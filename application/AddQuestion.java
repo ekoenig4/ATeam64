@@ -1,3 +1,10 @@
+/**
+ * Filename:   AddQuestion.java
+ * Class: 		 CS 400, Spring 2019
+ * Project:    Final Team Project
+ * Due Date:   April 25, 2019
+ * Authors:    Alexandra Borukhovetskaya, Evan Koenig, Angelique Stepanenkov, Matthew Palmer, Otto Baier
+ */
 package application;
 
 import javafx.geometry.Insets;
@@ -10,6 +17,10 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+/**
+ * allows for a question & topic to be added manually
+ *
+ */
 public class AddQuestion implements Window {
   private Stage stage;
 

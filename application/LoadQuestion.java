@@ -1,16 +1,30 @@
+/**
+ * Filename:   LoadQuestion.java
+ * Class: 		 CS 400, Spring 2019
+ * Project:    Final Team Project
+ * Due Date:   April 25, 2019
+ * Authors:    Alexandra Borukhovetskaya, Evan Koenig, Angelique Stepanenkov, Matthew Palmer, Otto Baier
+ */
 package application;
 
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * A place where questions can be loaded in from a file
+ *
+ */
 public class LoadQuestion implements Window{
 	private Stage stage;
 	
+	/**
+	 * Constructor, sets current stage
+	 * @param stage
+	 */
 	public LoadQuestion(Stage stage) {
 		this.stage = stage;
 	}

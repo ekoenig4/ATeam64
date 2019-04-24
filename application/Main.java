@@ -1,3 +1,11 @@
+/**
+ * Filename:   Main.java
+ * Class: 		 CS 400, Spring 2019
+ * Project:    Final Team Project
+ * Due Date:   April 25, 2019
+ * Authors:    Alexandra Borukhovetskaya, Evan Koenig, Angelique Stepanenkov, Matthew Palmer, Otto Baier
+ */
+
 package application;
 	
 import javafx.application.Application;
@@ -5,7 +13,10 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 
-
+/**
+ * Runs the program and deals with user input, displays different windows based on the user’s inputs
+ *
+ */
 public class Main extends Application {
 	public static Window[] windows;
 	

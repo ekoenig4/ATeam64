@@ -1,3 +1,10 @@
+/**
+ * Filename:   StartScreen.java
+ * Class: 		 CS 400, Spring 2019
+ * Project:    Final Team Project
+ * Due Date:   April 25, 2019
+ * Authors:    Alexandra Borukhovetskaya, Evan Koenig, Angelique Stepanenkov, Matthew Palmer, Otto Baier
+ */
 package application;
 
 import javafx.geometry.Insets;
@@ -9,6 +16,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+/**
+ * Implements the welcoming screen
+ */
 public class StartScreen implements Window{
 	private Stage stage;
 	
