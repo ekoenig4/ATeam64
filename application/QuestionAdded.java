@@ -38,11 +38,15 @@ public class QuestionAdded implements Window{
    
     root.getChildren().add(currentNum);
     VBox.setMargin(currentNum, border);
-    HBox buttons = new HBox(200);
+    HBox buttons = new HBox(50);
+    Button TakeQButton = new Button("Take a Quiz", Main.windows[4], stage);
+    TakeQButton.setPrefSize(200, 100);
+    TakeQButton.setFont(Config.SIZE14);
+    Main.buttonList.add(TakeQButton);
     buttons.setAlignment(Pos.CENTER);
-    buttons.getChildren().add(new Button("Add Questions", Main.windows[1], stage));
-    buttons.getChildren().add(new Button("Load Questions", Main.windows[2], stage));
-    buttons.getChildren().add(new Button("Take a Quiz", Main.windows[4], stage));
+    buttons.getChildren().add(Main.buttonList.get(0));
+    buttons.getChildren().add(Main.buttonList.get(1));
+    buttons.getChildren().add(Main.buttonList.get(2));
     root.getChildren().add(buttons);
     return scene;
   }

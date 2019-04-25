@@ -32,7 +32,7 @@ public class Quiz implements Window{
     Scene scene = new Scene(root,800,600);
     
     Label quizHeader = new Label("QUIZ");
-    quizHeader.setFont(Config.SIZE20);
+    quizHeader.setFont(Config.SIZE24);
    
     root.getChildren().add(quizHeader);
     VBox.setMargin(quizHeader, border);

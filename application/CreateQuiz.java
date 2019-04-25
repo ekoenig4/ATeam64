@@ -31,7 +31,7 @@ public class CreateQuiz implements Window {
     Scene scene = new Scene(root, 800, 600);
     // HEADER
     Label quizHeader = new Label("Create Quiz");
-    quizHeader.setFont(Config.SIZE20);
+    quizHeader.setFont(Config.SIZE24);
     root.getChildren().add(quizHeader);
     root.getChildren().add(Main.topicBox);
     // NUMBER OF QUESTIONS AREA

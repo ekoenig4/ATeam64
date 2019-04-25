@@ -38,7 +38,7 @@ public class LoadQuestion implements Window{
 	    Scene scene = new Scene(root, 800, 600);
 	    // HEADER
 	    Label loadHeader = new Label("Load Questions From File");
-	    loadHeader.setFont(Config.SIZE20);
+	    loadHeader.setFont(Config.SIZE24);
 		root.getChildren().add(loadHeader);
 		// DESCRIPTION
 		Label loadDesc = new Label("Please load a valid JSON format file");

@@ -13,6 +13,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 /**
@@ -33,14 +35,22 @@ public class StartScreen implements Window{
     Scene scene = new Scene(root,800,600);
     
     Label welcome = new Label("Welcome! Please add or load questions.");
-    welcome.setFont(Config.SIZE20);
+    welcome.setFont(Config.SIZE24);
    
     root.getChildren().add(welcome);
     VBox.setMargin(welcome, border);
     HBox buttons = new HBox(200);
     buttons.setAlignment(Pos.CENTER);
-    buttons.getChildren().add(new Button("Add Questions", Main.windows[1], stage));
-    buttons.getChildren().add(new Button("Load Questions", Main.windows[2], stage));
+    Button AddQButton = new Button("Add Questions", Main.windows[1], stage);
+    AddQButton.setPrefSize(200, 100);
+    AddQButton.setFont(Config.SIZE14);
+    Main.buttonList.add(AddQButton);
+    Button LoadQButton = new Button("Load Questions", Main.windows[2], stage);
+    LoadQButton.setPrefSize(200, 100);
+    LoadQButton.setFont(Config.SIZE14);
+    Main.buttonList.add(LoadQButton);
+    buttons.getChildren().add(Main.buttonList.get(0));
+    buttons.getChildren().add(Main.buttonList.get(1));
     root.getChildren().add(buttons);
     return scene;
   }

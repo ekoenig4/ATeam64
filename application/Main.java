@@ -8,6 +8,7 @@
 
 package application;
 	
+import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -23,6 +24,7 @@ import javafx.scene.layout.HBox;
 public class Main extends Application {
 	public static Window[] windows;
 	public static HBox topicBox;
+	public static ArrayList<Button> buttonList;
 
 	
 	@Override
@@ -33,11 +35,14 @@ public class Main extends Application {
 		    new QuestionAdded(primaryStage),
 		    new CreateQuiz(primaryStage),
 		    new Quiz(primaryStage)};
+		
 		topicBox = new HBox(20);
 	    Label topicPrompt = new Label("Topic:");
 	    topicPrompt.setFont(Config.SIZE14);
 	    topicBox.getChildren().add(topicPrompt);
 	    topicBox.getChildren().add(new ComboBox());
+	    buttonList = new ArrayList<Button>();
+	    
 		try {
 			BorderPane root = new BorderPane();
 			

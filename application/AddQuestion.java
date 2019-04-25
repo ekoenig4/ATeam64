@@ -34,7 +34,7 @@ public class AddQuestion implements Window {
     Scene scene = new Scene(root, 800, 600);
     // Header
     Label addQHeader = new Label("Add Question");
-    addQHeader.setFont(Config.SIZE20);
+    addQHeader.setFont(Config.SIZE24);
     root.getChildren().add(addQHeader);
     // Topic HBox
     HBox topicHB = new HBox(20);
