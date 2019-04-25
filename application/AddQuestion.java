@@ -74,7 +74,22 @@ public class AddQuestion implements Window {
     correctBox.getChildren().add(correctL);
     correctBox.getChildren().add(correctT);
     root.getChildren().add(correctBox);
-    root.getChildren().add(new Button("back", Main.windows[0], stage));
+    HBox incorrectBox = new HBox(20);
+    Label incorrectL = new Label("Enter incorrect answers:");
+    incorrectL.setFont(header2);
+    VBox incorrectTVB = new VBox(10);
+    for (int i = 0; i < 5; ++i) {
+      TextArea incorrect = new TextArea();
+      incorrect.setPrefHeight(50);
+      incorrectTVB.getChildren().add(incorrect);
+    }
+    incorrectBox.getChildren().add(incorrectL);
+    incorrectBox.getChildren().add(incorrectTVB);
+    root.getChildren().add(incorrectBox);
+    HBox lowerButtons = new HBox(20);
+    lowerButtons.getChildren().add(new Button("Back", Main.windows[0], stage));
+    lowerButtons.getChildren().add(new Button("Add Question", Main.windows[0], stage));
+    root.getChildren().add(lowerButtons);
     return scene;
   }
 
