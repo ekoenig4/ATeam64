@@ -7,6 +7,7 @@
  */
 package application;
 
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -32,14 +33,26 @@ public class LoadQuestion implements Window{
 	@Override
 	public Scene getScene() {
 		VBox root = new VBox(20);
-		Scene scene = new Scene(root,800,600);
-		root.getChildren().add(new Label("Load Question From File"));
+	    root.setPadding(new Insets(10, 25, 25, 25));
+	    root.setSpacing(10);
+	    Scene scene = new Scene(root, 800, 600);
+	    // HEADER
+	    Label loadHeader = new Label("Load Questions From File");
+	    loadHeader.setFont(Config.SIZE20);
+		root.getChildren().add(loadHeader);
+		// DESCRIPTION
+		Label loadDesc = new Label("Please load a valid JSON format file");
+		loadDesc.setFont(Config.SIZE14);
+		root.getChildren().add(loadDesc);
+		// LOAD QUESTION FILE
 		HBox fileBox = new HBox(20);
-		fileBox.getChildren().add(new Label("     Filename:"));
+		Label fileLabel = new Label("Filename:");
+		fileLabel.setFont(Config.SIZE14);
+		fileBox.getChildren().add(fileLabel);
 		fileBox.getChildren().add(new TextArea());
 		fileBox.setPrefHeight(10);
 		root.getChildren().add(fileBox);
-		fileBox.getChildren().add(new Button("Load",Main.windows[0],stage));
+		fileBox.getChildren().add(new Button("Load",Main.windows[3],stage));
 		root.getChildren().add(new Button("Back",Main.windows[0],stage));
 		return scene;
 	}
