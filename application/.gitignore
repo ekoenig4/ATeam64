@@ -5,3 +5,8 @@
 /Main.class
 /StartScreen.class
 /Window.class
+/Config.class
+/CreateQuiz.class
+/QuestionAdded.class
+/Quiz.class
+/LoadQuestion$1.class

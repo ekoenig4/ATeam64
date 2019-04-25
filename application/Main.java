@@ -10,6 +10,8 @@ package application;
 	
 import java.util.ArrayList;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
@@ -36,11 +38,15 @@ public class Main extends Application {
 		    new CreateQuiz(primaryStage),
 		    new Quiz(primaryStage)};
 		
+		ObservableList<String> topics =
+		    FXCollections.observableArrayList(
+		        "Other");
+		
 		topicBox = new HBox(20);
 	    Label topicPrompt = new Label("Topic:");
 	    topicPrompt.setFont(Config.SIZE14);
 	    topicBox.getChildren().add(topicPrompt);
-	    topicBox.getChildren().add(new ComboBox());
+	    topicBox.getChildren().add(new ComboBox<String>(topics));
 	    buttonList = new ArrayList<Button>();
 	    
 		try {

@@ -70,11 +70,12 @@ public class AddQuestion implements Window {
     Label incorrectL = new Label("Enter incorrect answers:");
     incorrectL.setFont(Config.SIZE14);
     VBox incorrectTVB = new VBox(10);
-    for (int i = 0; i < 5; ++i) {
-      TextArea incorrect = new TextArea();
-      incorrect.setPrefHeight(50);
-      incorrectTVB.getChildren().add(incorrect);
-    }
+    TextArea incorrect = new TextArea();
+    incorrect.setPrefHeight(50);
+    incorrectTVB.getChildren().add(incorrect);
+    // will eventually give the option of adding a greater amount of incorrect answers instead of max 4
+    javafx.scene.control.Button addAns = new javafx.scene.control.Button("Add Incorrect Answer");
+    incorrectTVB.getChildren().add(addAns);
     incorrectBox.getChildren().add(incorrectL);
     incorrectBox.getChildren().add(incorrectTVB);
     root.getChildren().add(incorrectBox);
