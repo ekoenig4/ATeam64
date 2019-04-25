@@ -20,11 +20,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 
 /**
- * Runs the program and deals with user input, displays different windows based on the user�s inputs
+ * Runs the program and deals with user input, displays different windows based on the user's inputs
  *
  */
 public class Main extends Application {
-	public static Window[] windows;
+	public static Window[] windows; // stores all windows that will be used
 	public static HBox topicBox;
 	public static ArrayList<Button> buttonList;
 
@@ -54,7 +54,7 @@ public class Main extends Application {
 			
 			Scene scene = new Scene(root,400,400);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setScene(windows[0].getScene());
+			primaryStage.setScene(windows[0].getScene()); // set scene to start screen
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
