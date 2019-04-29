@@ -7,6 +7,9 @@
  */
 package application;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -17,25 +20,39 @@ import javafx.stage.Stage;
 /**
  * Implements the welcoming screen
  */
-public class Quiz implements Window{
-    private Stage stage;
-    
-    public Quiz(Stage stage) {
-        this.stage = stage;
-    }
+public class Quiz implements Window {
+	private Stage stage;
+	private ArrayList<Topic> topicList;
+	private ArrayList<Question> quiz;
 
-  @Override
-  public Scene getScene() {
-    VBox root = new VBox(100);
-    root.setAlignment(Pos.CENTER);
-    Insets border = new Insets(10);
-    Scene scene = new Scene(root,800,600);
-    
-    Label quizHeader = new Label("QUIZ");
-    quizHeader.setFont(Config.SIZE24);
-   
-    root.getChildren().add(quizHeader);
-    VBox.setMargin(quizHeader, border);
-    return scene;
-  }
+	public Quiz(Stage stage) {
+		this.stage = stage;
+	}
+
+	@Override
+	public Scene getScene() {
+		VBox root = new VBox(20);
+		root.setPadding(new Insets(10, 25, 25, 25));
+		root.setSpacing(10);
+		Scene scene = new Scene(root, 800, 600);
+
+		Label quizHeader = new Label("QUIZ");
+		quizHeader.setFont(Config.SIZE24);
+
+		return scene;
+	}
+	
+	
+	public List<Question> makeQuiz(QuestionList questionList) {
+		
+		
+		return null;
+	}
+	
+	public void chooseTopics(Topic[] topicList) {
+		
+		
+		
+	}
+	
 }
