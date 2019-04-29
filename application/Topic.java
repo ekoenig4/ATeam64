@@ -13,4 +13,5 @@ public class Topic {
 	public void addQuestion(Question question) { questions.add(question); }
 	public int getNumQuestions() { return questions.size(); }
 	public boolean contains(Question question) { return questions.contains(question); }
+	public ArrayList<Question> getQuestions() { return questions; }
 }

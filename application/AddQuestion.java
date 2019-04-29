@@ -9,6 +9,7 @@ package application;
 
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
@@ -74,7 +75,7 @@ public class AddQuestion implements Window {
     incorrect.setPrefHeight(50);
     incorrectTVB.getChildren().add(incorrect);
     // will eventually give the option of adding a greater amount of incorrect answers instead of max 4
-    javafx.scene.control.Button addAns = new javafx.scene.control.Button("Add Incorrect Answer");
+    Button addAns = new Button("Add Incorrect Answer");
     incorrectTVB.getChildren().add(addAns);
     incorrectBox.getChildren().add(incorrectL);
     incorrectBox.getChildren().add(incorrectTVB);
