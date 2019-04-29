@@ -41,11 +41,11 @@ public class StartScreen implements Window{
     VBox.setMargin(welcome, border);
     HBox buttons = new HBox(200);
     buttons.setAlignment(Pos.CENTER);
-    Button AddQButton = new Button("Add Questions", Main.windows[1], stage);
+    SwapScreen AddQButton = new SwapScreen("Add Questions", Main.windows[1], stage);
     AddQButton.setPrefSize(200, 100);
     AddQButton.setFont(Config.SIZE14);
     Main.buttonList.add(AddQButton);
-    Button LoadQButton = new Button("Load Questions", Main.windows[2], stage);
+    SwapScreen LoadQButton = new SwapScreen("Load Questions", Main.windows[2], stage);
     LoadQButton.setPrefSize(200, 100);
     LoadQButton.setFont(Config.SIZE14);
     Main.buttonList.add(LoadQButton);

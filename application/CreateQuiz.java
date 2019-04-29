@@ -45,8 +45,8 @@ public class CreateQuiz implements Window {
     root.getChildren().add(numQsHB);
     // decision buttons area
     HBox buttons = new HBox(20);
-    buttons.getChildren().add(new Button("Back", Main.windows[3], stage));
-    buttons.getChildren().add(new Button("Generate Quiz", Main.windows[5], stage));
+    buttons.getChildren().add(new SwapScreen("Back", Main.windows[3], stage));
+    buttons.getChildren().add(new SwapScreen("Generate Quiz", Main.windows[5], stage));
     root.getChildren().add(buttons);
     return scene;
   }

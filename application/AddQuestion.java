@@ -80,8 +80,8 @@ public class AddQuestion implements Window {
     incorrectBox.getChildren().add(incorrectTVB);
     root.getChildren().add(incorrectBox);
     HBox lowerButtons = new HBox(20);
-    lowerButtons.getChildren().add(new Button("Back", Main.windows[0], stage));
-    lowerButtons.getChildren().add(new Button("Add Question", Main.windows[3], stage));
+    lowerButtons.getChildren().add(new SwapScreen("Back", Main.windows[0], stage));
+    lowerButtons.getChildren().add(new SwapScreen("Add Question", Main.windows[3], stage));
     root.getChildren().add(lowerButtons);
     return scene;
   }

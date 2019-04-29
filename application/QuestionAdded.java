@@ -39,7 +39,7 @@ public class QuestionAdded implements Window{
     root.getChildren().add(currentNum);
     VBox.setMargin(currentNum, border);
     HBox buttons = new HBox(50);
-    Button TakeQButton = new Button("Take a Quiz", Main.windows[4], stage);
+    SwapScreen TakeQButton = new SwapScreen("Take a Quiz", Main.windows[4], stage);
     TakeQButton.setPrefSize(200, 100);
     TakeQButton.setFont(Config.SIZE14);
     Main.buttonList.add(TakeQButton);

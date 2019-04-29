@@ -74,7 +74,7 @@ public class LoadQuestion implements Window{
 			}
 		});
 		fileBox.getChildren().add(loadButton);
-		root.getChildren().add(new Button("Back",Main.windows[0],stage));
+		root.getChildren().add(new SwapScreen("Back",Main.windows[0],stage));
 		return scene;
 	}
 
