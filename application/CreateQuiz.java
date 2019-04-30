@@ -7,6 +7,7 @@ package application;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -29,6 +30,7 @@ public class CreateQuiz implements Window {
 
 	public CreateQuiz(Stage stage) {
 		this.stage = stage;
+		setFieldsForTesting();
 	}
 
 	@Override
@@ -54,7 +56,7 @@ public class CreateQuiz implements Window {
 		// decision buttons area
 		HBox buttons = new HBox(20);
 		buttons.getChildren().add(new SwapScreen("Back", Main.windows[3], stage));
-		buttons.getChildren().add(new SwapScreen("Generate Quiz", Main.windows[5], stage));
+		buttons.getChildren().add(new SwapScreen("Generate Quiz", new Quiz(stage, this.quiz, this.quiz.get(0), 0), stage));
 		root.getChildren().add(buttons);
 		return scene;
 	}
@@ -86,6 +88,36 @@ public class CreateQuiz implements Window {
 				.collect(Collectors.toList()); // collects questions in a list
 
 		this.quiz = quizQuestions;
+	}
+	
+	private void setFieldsForTesting() {
+		HashMap<String, Boolean> answers1 = new HashMap<String, Boolean>();
+		answers1.put("chocolate", false);
+		answers1.put("vanilla", false);
+		answers1.put("strawberry", false);
+		answers1.put("mint chip", true);
+		Question question1 = new Question("Ice Cream", "Which Type of Ice Cream is Best", answers1);
+		
+		HashMap<String, Boolean> answers2 = new HashMap<String, Boolean>();
+		answers2.put("MBDTF", true);
+		answers2.put("LTOP", false);
+		answers2.put("College Drop Out", false);
+		answers2.put("808s and Heart Breaks", false);
+		Question question2 = new Question("Music", "Which Kanye West Album is Best", answers2);
+		
+		HashMap<String, Boolean> answers3 = new HashMap<String, Boolean>();
+		answers3.put("Dogs", false);
+		answers3.put("Cats", false);
+		answers3.put("Fish", false);
+		answers3.put("Pet Rock", true);
+		Question question3 = new Question("Animals", "Which Pet is Best", answers3);
+		
+		List<Question> questionList = new ArrayList<Question>();
+		questionList.add(question1);
+		questionList.add(question2);
+		questionList.add(question3);
+		
+		this.quiz = questionList;
 	}
 
 

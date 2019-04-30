@@ -37,7 +37,7 @@ public class Main extends Application {
 		    new LoadQuestion(primaryStage),
 		    new QuestionAdded(primaryStage),
 		    new CreateQuiz(primaryStage),
-		    new Quiz(primaryStage)};
+		    };
 		
 		ObservableList<String> topics =
 		    FXCollections.observableArrayList(
