@@ -1,5 +1,5 @@
 /**
- * Filename:   Button.java
+ * Filename:   SwapScreen.java
  * Class: 		 CS 400, Spring 2019
  * Project:    Final Team Project
  * Due Date:   April 25, 2019

@@ -7,6 +7,13 @@
  */
 package application;
 
+import java.io.FileReader;
+import java.util.HashMap;
+
+import org.json.simple.parser.JSONParser;
+
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -22,6 +29,7 @@ import javafx.stage.Stage;
  */
 public class AddQuestion implements Window {
   private Stage stage;
+  HashMap<String, Boolean> answerMap = new HashMap<String, Boolean>();
 
   public AddQuestion(Stage stage) {
     this.stage = stage;
@@ -76,7 +84,17 @@ public class AddQuestion implements Window {
     incorrectTVB.getChildren().add(incorrect);
     // will eventually give the option of adding a greater amount of incorrect answers instead of max 4
     Button addAns = new Button("Add Incorrect Answer");
+    Label incorrectAnswers = new Label("Incorrect Answers: ");
+    addAns.setOnAction(new EventHandler<ActionEvent>() {
+			@Override public void handle(ActionEvent t) {
+				answerMap.put(incorrect.getText(), false);
+				String text = incorrectAnswers.getText();
+				incorrectAnswers.setText(text+incorrect.getText()+", ");
+				incorrect.clear();
+			}
+		});
     incorrectTVB.getChildren().add(addAns);
+    incorrectTVB.getChildren().add(incorrectAnswers);
     incorrectBox.getChildren().add(incorrectL);
     incorrectBox.getChildren().add(incorrectTVB);
     root.getChildren().add(incorrectBox);
