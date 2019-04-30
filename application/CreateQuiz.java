@@ -5,6 +5,12 @@
  */
 package application;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
+
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -17,38 +23,70 @@ import javafx.stage.Stage;
  * Implements the welcoming screen
  */
 public class CreateQuiz implements Window {
-  private Stage stage;
+	private Stage stage;
+	private ArrayList<String> quizTopics;
+	private List<Question> quiz;
 
-  public CreateQuiz(Stage stage) {
-    this.stage = stage;
-  }
+	public CreateQuiz(Stage stage) {
+		this.stage = stage;
+	}
 
-  @Override
-  public Scene getScene() {
-    VBox root = new VBox(20);
-    root.setPadding(new Insets(10, 25, 25, 25));
-    root.setSpacing(10);
-    Scene scene = new Scene(root, 800, 600);
-    // HEADER
-    Label quizHeader = new Label("Create Quiz");
-    quizHeader.setFont(Config.SIZE24);
-    root.getChildren().add(quizHeader);
-    root.getChildren().add(Main.topicBox);
-    // NUMBER OF QUESTIONS AREA
-    HBox numQsHB = new HBox(10);
-    Label numQsLabel = new Label("Enter number of questions for the quiz:");
-    numQsLabel.setFont(Config.SIZE14);
-    TextArea numQsTA = new TextArea();
-    numQsTA.setPrefSize(100, 30);
-    numQsHB.getChildren().add(numQsLabel);
-    numQsHB.getChildren().add(numQsTA);
-    root.getChildren().add(numQsHB);
-    // decision buttons area
-    HBox buttons = new HBox(20);
-    buttons.getChildren().add(new SwapScreen("Back", Main.windows[3], stage));
-    buttons.getChildren().add(new SwapScreen("Generate Quiz", Main.windows[5], stage));
-    root.getChildren().add(buttons);
-    return scene;
-  }
+	@Override
+	public Scene getScene() {
+		VBox root = new VBox(20);
+		root.setPadding(new Insets(10, 25, 25, 25));
+		root.setSpacing(10);
+		Scene scene = new Scene(root, 800, 600);
+		// HEADER
+		Label quizHeader = new Label("Create Quiz");
+		quizHeader.setFont(Config.SIZE24);
+		root.getChildren().add(quizHeader);
+		root.getChildren().add(Main.topicBox);
+		// NUMBER OF QUESTIONS AREA
+		HBox numQsHB = new HBox(10);
+		Label numQsLabel = new Label("Enter number of questions for the quiz:");
+		numQsLabel.setFont(Config.SIZE14);
+		TextArea numQsTA = new TextArea();
+		numQsTA.setPrefSize(100, 30);
+		numQsHB.getChildren().add(numQsLabel);
+		numQsHB.getChildren().add(numQsTA);
+		root.getChildren().add(numQsHB);
+		// decision buttons area
+		HBox buttons = new HBox(20);
+		buttons.getChildren().add(new SwapScreen("Back", Main.windows[3], stage));
+		buttons.getChildren().add(new SwapScreen("Generate Quiz", Main.windows[5], stage));
+		root.getChildren().add(buttons);
+		return scene;
+	}
+	
+	
+	public void setQuizTopics(ArrayList<String> topicList) {
+		this.quizTopics = topicList;
+	}
+
+	public void makeQuiz(QuestionList questionList, int numQuestions) {
+		
+		ArrayList<ArrayList<Question>> allQuestionLists = new ArrayList<ArrayList<Question>>();
+		// Get list of topics from question list
+		for (String topic : questionList.allTopicNames()) {
+			if (this.quizTopics.contains(topic))
+				allQuestionLists.add(questionList.topicList.get(topic).getQuestions());
+		}
+		// Get List of Questions from the topics selected
+		List<Question> allQuestions = allQuestionLists.stream()
+				.flatMap(Collection::stream)
+				.collect(Collectors.toList());
+		// Use random stream of numbers to get random stream of questions
+		Random rand = new Random();
+		List<Question> quizQuestions = rand
+				.ints(0,allQuestions.size()) // random stream of integers between 0 and allQuestions - 1
+				.distinct()
+				.limit(numQuestions) // random numbers will be distinct and limited to numQuestions
+				.mapToObj(allQuestions::get) // maps numbers to get method of allQuestions
+				.collect(Collectors.toList()); // collects questions in a list
+
+		this.quiz = quizQuestions;
+	}
+
 
 }
