@@ -22,8 +22,6 @@ import javafx.stage.Stage;
  */
 public class Quiz implements Window {
 	private Stage stage;
-	private ArrayList<Topic> topicList;
-	private ArrayList<Question> quiz;
 
 	public Quiz(Stage stage) {
 		this.stage = stage;
@@ -35,6 +33,8 @@ public class Quiz implements Window {
 		root.setPadding(new Insets(10, 25, 25, 25));
 		root.setSpacing(10);
 		Scene scene = new Scene(root, 800, 600);
+		
+		Label questionNumber = new Label("Question Number #1");
 
 		Label quizHeader = new Label("QUIZ");
 		quizHeader.setFont(Config.SIZE24);
@@ -43,16 +43,6 @@ public class Quiz implements Window {
 	}
 	
 	
-	public List<Question> makeQuiz(QuestionList questionList) {
-		
-		
-		return null;
-	}
 	
-	public void chooseTopics(Topic[] topicList) {
-		
-		
-		
-	}
 	
 }
