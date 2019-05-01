@@ -26,13 +26,17 @@ import javafx.scene.layout.HBox;
  */
 public class Main extends Application {
   public static Window[] windows; // stores all windows that will be used
+  // 0: Home
+  // 1: AddQuestion
+  // 2: LoadQuestion
+  // 3: CreateQuiz
+  // 4: QuitWindow
+  // 5: SaveAndQuitWindow
   public static HBox topicBox; // HBox to display the topic label and combobox 
   public static ObservableList<String> topics; // list of topics to display
   public static ComboBox<String> topic; // the ComboBox that shows all the topics
   public static QuestionList questionList; // stores all topics, which themselves store questions
-  // Button List:
-  // 0: Add Question
-  // 1: Load Question
+
   
   @Override
   public void start(Stage primaryStage) {
