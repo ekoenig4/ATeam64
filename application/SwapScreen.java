@@ -21,7 +21,8 @@ public class SwapScreen extends Button{
 	public SwapScreen(String name,Window state,Stage stage) {
 		super(name);
 		this.setOnAction(new EventHandler<ActionEvent>() {
-			@Override public void handle(ActionEvent e) {
+			@Override 
+			public void handle(ActionEvent e) {
 				stage.setScene(state.getScene());
 			}
 		});

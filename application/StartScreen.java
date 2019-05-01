@@ -7,10 +7,13 @@
  */
 package application;
 
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -48,9 +51,20 @@ public class StartScreen implements Window{
     LoadQButton.setPrefSize(200, 100);
     LoadQButton.setFont(Config.SIZE14);
     Main.buttonList.add(LoadQButton);
+    Button quitButton = new Button("Quit");
+    quitButton.setPrefSize(100, 50);
+    quitButton.setFont(Config.SIZE14);
+    quitButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      @Override 
+      public void handle(MouseEvent e) { 
+         stage.close();
+      }
+    });
+    Main.buttonList.add(quitButton);
     buttons.getChildren().add(Main.buttonList.get(0));
     buttons.getChildren().add(Main.buttonList.get(1));
     root.getChildren().add(buttons);
+    root.getChildren().add(Main.buttonList.get(2));
     return scene;
   }
 
