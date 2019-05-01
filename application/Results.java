@@ -32,11 +32,14 @@ public class Results implements Window {
     Label resultHeader = new Label("Results");
     resultHeader.setFont(Config.SIZE24);
     root.getChildren().add(resultHeader);
-    //
+    // create labels for % correct, num correct, and num questions
+    Label correctPerc = new Label("Percentage correct: " + ((double) numCorrect / (double) numQuestions));
     Label numCorrectMsg = new Label("Number of Questions Correct: " + numCorrect);
     Label numQuestionMsg = new Label("Total Number of Questions in the Quiz: " + numQuestions);
+    correctPerc.setFont(Config.BOLD18);
     numCorrectMsg.setFont(Config.BOLD18);
     numQuestionMsg.setFont(Config.BOLD18);
+    root.getChildren().add(correctPerc);
     root.getChildren().add(numCorrectMsg);
     root.getChildren().add(numQuestionMsg);
     root.getChildren().add(new SwapScreen("Return to Home", Main.windows[0], stage));
