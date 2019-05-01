@@ -1,7 +1,9 @@
 /**
- * Filename: CreateQuiz.java Class: CS 400, Spring 2019 Project: Final Team Project Due Date: April
- * 25, 2019 Authors: Alexandra Borukhovetskaya, Evan Koenig, Angelique Stepanenkov, Matthew Palmer,
- * Otto Baier
+ * Filename: CreateQuiz.java
+ * Class: CS 400, Spring 2019 
+ * Project: Final Team Project 
+ * Due Date: May 2, 2019 
+ * Authors: Alexandra Borukhovetskaya, Evan Koenig, Angelique Stepanenkov, Matthew Palmer, Otto Baier
  */
 package application;
 
@@ -37,7 +39,7 @@ public class CreateQuiz implements Window {
 		quiz = new ArrayList<Question>();
 		// setFieldsForTesting();
 	}
-
+	
 	@Override
 	public Scene getScene() {
 		VBox root = new VBox(20);
@@ -85,14 +87,15 @@ public class CreateQuiz implements Window {
 		root.getChildren().add(numQsHB);
 		// decision buttons area
 		HBox buttons = new HBox(20);
-		buttons.getChildren().add(new SwapScreen("Back", Main.windows[3], stage));
+		buttons.getChildren().add(new SwapScreen("Back", Main.windows[0], stage));
 		Button genQuiz = new Button("Generate Quiz");
 		genQuiz.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent t) {
 				if (quizTopics.size() > 0 && isInteger(numQsTA.getText())) {
 					nQuestions = Integer.parseInt(numQsTA.getText());
-					
+					makeQuiz();
+					System.out.println(quiz);
 				}
 			}
 		});
@@ -113,8 +116,7 @@ public class CreateQuiz implements Window {
 		this.quizTopics = topicList;
 	}
 
-	public void makeQuiz(QuestionList questionList, int numQuestions) {
-
+  public void makeQuiz() {
 		ArrayList<ArrayList<Question>> allQuestionLists = new ArrayList<ArrayList<Question>>();
 		// Get list of topics from question list
 		Topic[] topicList = Main.questionList.getTopic(quizTopics.toArray(new String[0]));
@@ -129,47 +131,10 @@ public class CreateQuiz implements Window {
 		List<Question> quizQuestions = rand
 				.ints(0,allQuestions.size()) // random stream of integers between 0 and allQuestions - 1
 				.distinct()
-				.limit(numQuestions) // random numbers will be distinct and limited to numQuestions
+				.limit(nQuestions) // random numbers will be distinct and limited to numQuestions
 				.mapToObj(allQuestions::get) // maps numbers to get method of allQuestions
 				.collect(Collectors.toList()); // collects questions in a list
 
 		this.quiz = quizQuestions;
 	}
-
-	// private void setFieldsForTesting() {
-	// HashMap<String, Boolean> answers1 = new HashMap<String, Boolean>();
-	// answers1.put("chocolate", false);
-	// answers1.put("vanilla", false);
-	// answers1.put("strawberry", false);
-	// answers1.put("mint chip", true);
-	// Question question1 = new Question("Ice Cream", "Which Type of Ice Cream is Best", answers1);
-	//
-	// HashMap<String, Boolean> answers2 = new HashMap<String, Boolean>();
-	// answers2.put("MBDTF", true);
-	// answers2.put("LTOP", false);
-	// answers2.put("College Drop Out", false);
-	// Question question2 = new Question("Music", "Which Kanye West Album is Best", answers2);
-	//
-	// HashMap<String, Boolean> answers3 = new HashMap<String, Boolean>();
-	// answers3.put("Dogs", false);
-	// answers3.put("Cats", false);
-	// answers3.put("Fish", false);
-	// answers3.put("Pet Rock", true);
-	// Question question3 = new Question("Animals", "Which Pet is Best", answers3);
-	//
-	// HashMap<String, Boolean> answers4 = new HashMap<String, Boolean>();
-	// answers4.put("True", false);
-	// answers4.put("False", true);
-	// Question question4 = new Question("Ecology", "Grass is not Green", answers4);
-	//
-	// List<Question> questionList = new ArrayList<Question>();
-	// questionList.add(question1);
-	// questionList.add(question2);
-	// questionList.add(question3);
-	// questionList.add(question4);
-	//
-	// this.quiz = questionList;
-	// }
-
-
 }

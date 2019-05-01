@@ -1,7 +1,9 @@
 /**
- * Filename: AddQuestion.java Class: CS 400, Spring 2019 Project: Final Team Project Due Date: April
- * 25, 2019 Authors: Alexandra Borukhovetskaya, Evan Koenig, Angelique Stepanenkov, Matthew Palmer,
- * Otto Baier
+ * Filename: AddQuestion.java
+ * Class: CS 400, Spring 2019 
+ * Project: Final Team Project 
+ * Due Date: May 2, 2019 
+ * Authors: Alexandra Borukhovetskaya, Evan Koenig, Angelique Stepanenkov, Matthew Palmer, Otto Baier
  */
 package application;
 
@@ -135,8 +137,7 @@ public class AddQuestion implements Window {
           answerMap.put(correctT.getText(), true);
           Question newQuestion = new Question(questionTopic, question.getText(), answerMap);
           Main.questionList.addQuestion(newQuestion);
-          Main.numQ++;
-          stage.setScene(Main.windows[3].getScene());
+          stage.setScene(Main.windows[0].getScene());
         } catch (Exception e) {
           Label error = new Label("Please enter a valid question");
           lowerButtons.getChildren().add(error);
