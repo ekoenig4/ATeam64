@@ -11,14 +11,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class SaveAndQuitWindow implements Window{
+public class SaveWindow implements Window{
   private Stage stage;
   
   /**
    * Constructor, sets current stage
    * @param stage
    */
-  public SaveAndQuitWindow(Stage stage) {
+  public SaveWindow(Stage stage) {
       this.stage = stage;
   }
 
@@ -46,16 +46,16 @@ public class SaveAndQuitWindow implements Window{
     fileBox.setPrefHeight(10);
     fileBox.getChildren().add(loadDesc);
     root.getChildren().add(fileBox);
-    Button saveButton = new Button("Save and Quit");
+    Button saveButton = new Button("Save");
     // save questions under filename
     saveButton.setOnAction(new EventHandler<ActionEvent>() {
         @Override public void handle(ActionEvent t) { 
           Main.questionList.Save(filename.getText().concat(".json"));
-          stage.close();
+          stage.setScene(Main.windows[0].getScene());
         }
     });
     fileBox.getChildren().add(saveButton);
-    root.getChildren().add(new SwapScreen("Back",Main.windows[4],stage));
+    root.getChildren().add(new SwapScreen("Back",Main.windows[0],stage));
     return scene;
   }
 }
