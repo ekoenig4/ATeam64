@@ -1,6 +1,6 @@
 /**
  * Filename:   Main.java
- * Class: 		 CS 400, Spring 2019
+ * Class: 	   CS 400, Spring 2019
  * Project:    Final Team Project
  * Due Date:   April 25, 2019
  * Authors:    Alexandra Borukhovetskaya, Evan Koenig, Angelique Stepanenkov, Matthew Palmer, Otto Baier
@@ -28,6 +28,9 @@ public class Main extends Application {
 	public static Window[] windows; // stores all windows that will be used
 	public static HBox topicBox;
 	public static ArrayList<Button> buttonList;
+	// Button List:
+	// 0: Add Question
+	// 1: Load Question
 
 	
 	@Override

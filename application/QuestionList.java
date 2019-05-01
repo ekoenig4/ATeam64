@@ -14,9 +14,11 @@ import org.json.simple.parser.ParseException;
 
 public class QuestionList {
 	HashMap<String,Topic> topicList;
+	int numberOfQuestions;
 
 	public QuestionList() {
 		topicList = new HashMap<>();
+		numberOfQuestions = 0;
 	}
 
 	public void addTopic(String topicName) {
@@ -25,10 +27,18 @@ public class QuestionList {
 		}
 	}
 
+	/** Add a question to the list of current questions
+	 * @param question The question to add to the list
+	 */
 	public void addQuestion(Question question) {
 		this.addTopic(question.getTopic());
 		Topic topic = topicList.get(question.getTopic());
 		topic.addQuestion(question);	
+		++numberOfQuestions;
+	}
+	
+	public int getNumOfQuestions() {
+	  return numberOfQuestions;
 	}
 	
 	public Topic[] getTopic(String...topicNames) {
