@@ -30,7 +30,7 @@ public class CreateQuiz implements Window {
 
 	public CreateQuiz(Stage stage) {
 		this.stage = stage;
-		setFieldsForTesting();
+//		setFieldsForTesting();
 	}
 
 	@Override
@@ -90,35 +90,40 @@ public class CreateQuiz implements Window {
 		this.quiz = quizQuestions;
 	}
 	
-	private void setFieldsForTesting() {
-		HashMap<String, Boolean> answers1 = new HashMap<String, Boolean>();
-		answers1.put("chocolate", false);
-		answers1.put("vanilla", false);
-		answers1.put("strawberry", false);
-		answers1.put("mint chip", true);
-		Question question1 = new Question("Ice Cream", "Which Type of Ice Cream is Best", answers1);
-		
-		HashMap<String, Boolean> answers2 = new HashMap<String, Boolean>();
-		answers2.put("MBDTF", true);
-		answers2.put("LTOP", false);
-		answers2.put("College Drop Out", false);
-		answers2.put("808s and Heart Breaks", false);
-		Question question2 = new Question("Music", "Which Kanye West Album is Best", answers2);
-		
-		HashMap<String, Boolean> answers3 = new HashMap<String, Boolean>();
-		answers3.put("Dogs", false);
-		answers3.put("Cats", false);
-		answers3.put("Fish", false);
-		answers3.put("Pet Rock", true);
-		Question question3 = new Question("Animals", "Which Pet is Best", answers3);
-		
-		List<Question> questionList = new ArrayList<Question>();
-		questionList.add(question1);
-		questionList.add(question2);
-		questionList.add(question3);
-		
-		this.quiz = questionList;
-	}
+//	private void setFieldsForTesting() {
+//		HashMap<String, Boolean> answers1 = new HashMap<String, Boolean>();
+//		answers1.put("chocolate", false);
+//		answers1.put("vanilla", false);
+//		answers1.put("strawberry", false);
+//		answers1.put("mint chip", true);
+//		Question question1 = new Question("Ice Cream", "Which Type of Ice Cream is Best", answers1);
+//		
+//		HashMap<String, Boolean> answers2 = new HashMap<String, Boolean>();
+//		answers2.put("MBDTF", true);
+//		answers2.put("LTOP", false);
+//		answers2.put("College Drop Out", false);
+//		Question question2 = new Question("Music", "Which Kanye West Album is Best", answers2);
+//		
+//		HashMap<String, Boolean> answers3 = new HashMap<String, Boolean>();
+//		answers3.put("Dogs", false);
+//		answers3.put("Cats", false);
+//		answers3.put("Fish", false);
+//		answers3.put("Pet Rock", true);
+//		Question question3 = new Question("Animals", "Which Pet is Best", answers3);
+//		
+//		HashMap<String, Boolean> answers4 = new HashMap<String, Boolean>();
+//		answers4.put("True", false);
+//		answers4.put("False", true);
+//		Question question4 = new Question("Ecology", "Grass is not Green", answers4);
+//		
+//		List<Question> questionList = new ArrayList<Question>();
+//		questionList.add(question1);
+//		questionList.add(question2);
+//		questionList.add(question3);
+//		questionList.add(question4);
+//		
+//		this.quiz = questionList;
+//	}
 
 
 }
