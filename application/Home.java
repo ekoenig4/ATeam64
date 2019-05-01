@@ -40,21 +40,30 @@ public class Home implements Window {
 
     root.getChildren().add(currentNum);
     VBox.setMargin(currentNum, border);
+    
     SwapScreen AddQButton = new SwapScreen("Add Questions", Main.windows[1], stage);
     AddQButton.setPrefSize(200, 100);
     AddQButton.setFont(Config.SIZE14);
+    
     SwapScreen LoadQButton = new SwapScreen("Load Questions", Main.windows[2], stage);
     LoadQButton.setPrefSize(200, 100);
     LoadQButton.setFont(Config.SIZE14);
+    
     HBox buttons = new HBox(50);
     SwapScreen TakeQButton = new SwapScreen("Take a Quiz", Main.windows[3], stage);
     TakeQButton.setPrefSize(200, 100);
     TakeQButton.setFont(Config.SIZE14);
     buttons.setAlignment(Pos.CENTER);
+    
+    SwapScreen quitButton = new SwapScreen("Quit", Main.windows[4], stage);
+    quitButton.setPrefSize(100, 50);
+    quitButton.setFont(Config.SIZE14);
+    
     buttons.getChildren().add(AddQButton);
     buttons.getChildren().add(LoadQButton);
     buttons.getChildren().add(TakeQButton);
     root.getChildren().add(buttons);
+    root.getChildren().add(quitButton);
     return scene;
   }
 
