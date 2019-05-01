@@ -36,7 +36,7 @@ public class QuestionAdded implements Window {
     root.setAlignment(Pos.CENTER);
     Insets border = new Insets(10);
     Scene scene = new Scene(root, 800, 600);    
-    Label currentNum = new Label("Currently you have "+ Main.numQ +" question(s) loaded");
+    Label currentNum = new Label("Currently you have "+ Main.questionList.getNumOfQuestions() +" question(s) loaded");
     currentNum.setFont(Font.font(20));
 
     root.getChildren().add(currentNum);

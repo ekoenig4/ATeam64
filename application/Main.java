@@ -32,10 +32,7 @@ public class Main extends Application {
   // Button List:
   // 0: Add Question
   // 1: Load Question
-  public static int numQ = 0;
-
-
-
+  
   @Override
   public void start(Stage primaryStage) {
     windows = new Window[] {new StartScreen(primaryStage), new AddQuestion(primaryStage),
