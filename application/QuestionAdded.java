@@ -35,9 +35,8 @@ public class QuestionAdded implements Window {
     VBox root = new VBox(100);
     root.setAlignment(Pos.CENTER);
     Insets border = new Insets(10);
-    Scene scene = new Scene(root, 800, 600);
-
-    Label currentNum = new Label("Currently you have 0 questions loaded");
+    Scene scene = new Scene(root, 800, 600);    
+    Label currentNum = new Label("Currently you have "+Main.numQ+" questions loaded");
     currentNum.setFont(Font.font(20));
 
     root.getChildren().add(currentNum);

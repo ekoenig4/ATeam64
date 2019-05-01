@@ -23,7 +23,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
- * Implements the welcoming screen
+ * 
  */
 public class Quiz implements Window {
 	private Stage stage;
