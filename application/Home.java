@@ -53,15 +53,25 @@ public class Home implements Window {
     TakeQButton.setPrefSize(200, 100);
     TakeQButton.setFont(Config.SIZE14);
     buttons.setAlignment(Pos.CENTER);
+    
+    HBox options = new HBox(50);
     SwapScreen quitButton = new SwapScreen("Quit", Main.windows[4], stage);
     quitButton.setPrefSize(100, 50);
     quitButton.setFont(Config.SIZE14);
+    
+    SwapScreen saveButton = new SwapScreen("Save", Main.windows[6], stage);
+    saveButton.setPrefSize(100, 50);
+    saveButton.setFont(Config.SIZE14);
+    
+    options.getChildren().add(saveButton);
+    options.getChildren().add(quitButton);
+    options.setAlignment(Pos.CENTER);
     
     buttons.getChildren().add(AddQButton);
     buttons.getChildren().add(LoadQButton);
     buttons.getChildren().add(TakeQButton);
     root.getChildren().add(buttons);
-    root.getChildren().add(quitButton);
+    root.getChildren().add(options);
     return scene;
   }
 }
