@@ -26,10 +26,10 @@ import javafx.scene.layout.HBox;
  */
 public class Main extends Application {
   public static Window[] windows; // stores all windows that will be used
-  public static HBox topicBox;
-  public static ObservableList<String> topics;
-  public static ComboBox<String> topic;
-  public static QuestionList questionList;
+  public static HBox topicBox; // HBox to display the topic label and combobox 
+  public static ObservableList<String> topics; // list of topics to display
+  public static ComboBox<String> topic; // the ComboBox that shows all the topics
+  public static QuestionList questionList; // stores all topics, which themselves store questions
   // Button List:
   // 0: Add Question
   // 1: Load Question
@@ -43,9 +43,9 @@ public class Main extends Application {
         new LoadQuestion(primaryStage), 
         new CreateQuiz(primaryStage), new QuitWindow(primaryStage), new SaveWindow(primaryStage)};
     
-    topics = FXCollections.observableArrayList("Other");
+    topics = FXCollections.observableArrayList(); // empty topic list, "Other" is added when used
 
-    topicBox = new HBox(20);
+    topicBox = new HBox(20); // HBox to display the topic label and combobox
     Label topicPrompt = new Label("Topic:");
     topicPrompt.setFont(Config.SIZE14);
     topicBox.getChildren().add(topicPrompt);

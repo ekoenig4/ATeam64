@@ -46,6 +46,10 @@ public class AddQuestion implements Window {
     root.getChildren().add(addQHeader);
     // Topic HBox
     HBox topicHB = new HBox(20);
+    if (Main.topics.contains("Other")) // removes "Other" before alphabetizing
+      Main.topics.remove("Other");
+    Main.topics.sorted(); // alphabetize
+    Main.topics.add("Other"); // re-add "Other" to be at end of list
     topicHB.getChildren().add(Main.topicBox);
     VBox otherTopicVB = new VBox(10); // groups other topic label with textbox
     Label otherPrompt =
