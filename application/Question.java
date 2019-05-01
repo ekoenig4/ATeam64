@@ -41,7 +41,11 @@ public class Question {
     this.question = question;
     this.answers = answers;
     this.imageFileName = imageFileName;
+    try {
     this.pic = !this.imageFileName.equals("none") ? new Image(imageFileName) : null;
+    } catch(IllegalArgumentException e) {
+    	this.pic = null;
+    }
     this.metaData = metaData;
   }
 

@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -55,7 +56,13 @@ public class Quiz implements Window {
     questionText.setFont(Config.SIZE14);
     questionText.setWrapText(true);
     root.getChildren().add(questionText);
-
+    
+    ImageView img = new ImageView();
+    if (currentQuestion.getPic() != null)
+    	img = new ImageView(currentQuestion.getPic());
+  	img.setFitHeight(200);
+  	img.setFitWidth(200);
+  	root.getChildren().add(img);
     // Create VBox to hold all possible answers
     VBox questions = new VBox(10);
     // get keys from questions answers hashmap, display these as questions

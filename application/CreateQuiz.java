@@ -93,8 +93,6 @@ public class CreateQuiz implements Window {
 			public void handle(ActionEvent t) {
 				if (quizTopics.size() > 0 && isInteger(numQsTA.getText())) {
 					nQuestions = Integer.parseInt(numQsTA.getText());
-					if (nQuestions >= Main.questionList.getNumOfQuestions())
-						nQuestions = Main.questionList.getNumOfQuestions();
 					makeQuiz();
 				}
 			}
@@ -125,6 +123,7 @@ public class CreateQuiz implements Window {
 		List<Question> allQuestions = allQuestionLists.stream()
 				.flatMap(Collection::stream)
 				.collect(Collectors.toList());
+		if (nQuestions > allQuestions.size()) nQuestions = allQuestions.size();
 		// Use random stream of numbers to get random stream of questions
 		Random rand = new Random();
 		List<Question> quizQuestions = rand
