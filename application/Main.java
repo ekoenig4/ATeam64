@@ -1,7 +1,9 @@
 /**
- * Filename: Main.java Class: CS 400, Spring 2019 Project: Final Team Project Due Date: April 25,
- * 2019 Authors: Alexandra Borukhovetskaya, Evan Koenig, Angelique Stepanenkov, Matthew Palmer, Otto
- * Baier
+ * Filename: Main.java
+ * Class: CS 400, Spring 2019 
+ * Project: Final Team Project 
+ * Due Date: May 2, 2019 
+ * Authors: Alexandra Borukhovetskaya, Evan Koenig, Angelique Stepanenkov, Matthew Palmer, Otto Baier
  */
 
 package application;
@@ -53,7 +55,6 @@ public class Main extends Application {
 
     try {
       BorderPane root = new BorderPane();
-
       Scene scene = new Scene(root, 400, 400);
       scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
       primaryStage.setScene(windows[0].getScene()); // set scene to start screen
