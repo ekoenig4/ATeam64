@@ -35,12 +35,11 @@ public class Home implements Window {
     root.setAlignment(Pos.CENTER);
     Insets border = new Insets(10);
     Scene scene = new Scene(root, 800, 600);    
-    Label currentNum = new Label("Currently you have "+ Main.numQ +" question(s) loaded");
+    Label currentNum = new Label("Currently you have "+ Main.questionList.getNumOfQuestions() +" question(s) loaded");
     currentNum.setFont(Font.font(20));
 
     root.getChildren().add(currentNum);
     VBox.setMargin(currentNum, border);
-    
     SwapScreen AddQButton = new SwapScreen("Add Questions", Main.windows[1], stage);
     AddQButton.setPrefSize(200, 100);
     AddQButton.setFont(Config.SIZE14);
@@ -54,7 +53,6 @@ public class Home implements Window {
     TakeQButton.setPrefSize(200, 100);
     TakeQButton.setFont(Config.SIZE14);
     buttons.setAlignment(Pos.CENTER);
-    
     SwapScreen quitButton = new SwapScreen("Quit", Main.windows[4], stage);
     quitButton.setPrefSize(100, 50);
     quitButton.setFont(Config.SIZE14);
@@ -66,5 +64,4 @@ public class Home implements Window {
     root.getChildren().add(quitButton);
     return scene;
   }
-
 }

@@ -20,8 +20,8 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 public class QuestionList {
-	HashMap<String,Topic> topicList;
-	int numberOfQuestions;
+	private HashMap<String,Topic> topicList;
+	private int numberOfQuestions;
 
 	public QuestionList() {
 		topicList = new HashMap<>();

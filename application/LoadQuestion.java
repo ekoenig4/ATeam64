@@ -64,18 +64,22 @@ public class LoadQuestion implements Window{
 		// Attempting to load the entered filename
 		loadButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override public void handle(ActionEvent t) {
+				Label msg;
 				try {
-					String jsonFile = filename.getText().concat(".json");
-					Object obj = new JSONParser().parse(new FileReader(jsonFile));
+					String fn = filename.getText();
+					if (!fn.endsWith(".json"))
+						fn += ".json";
+					Main.questionList.Load(fn);
+					msg = new Label(fn+" successfully loaded!");
 				} catch(Exception e) {
-					Label error = new Label("Please enter a valid filename");
-					if(!root.getChildren().contains(error))
-						root.getChildren().add(error);
+					msg = new Label("Please enter a valid filename");
 				}
+				if(!root.getChildren().contains(msg))
+					root.getChildren().add(msg);
 			}
 		});
 		fileBox.getChildren().add(loadButton);
-		root.getChildren().add(new SwapScreen("Back",Main.windows[0],stage));
+		root.getChildren().add(new SwapScreen("Back",Main.windows[3],stage));
 		return scene;
 	}
 

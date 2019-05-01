@@ -144,7 +144,6 @@ public class AddQuestion implements Window {
           answerMap.put(correctT.getText(), true);
           Question newQuestion = new Question(questionTopic, question.getText(), answerMap);
           Main.questionList.addQuestion(newQuestion);
-          Main.numQ++;
           stage.setScene(Main.windows[0].getScene());
         } catch (Exception e) {
           Label error = new Label("Please enter a valid question");
