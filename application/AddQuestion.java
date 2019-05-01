@@ -47,15 +47,7 @@ public class AddQuestion implements Window {
     root.getChildren().add(addQHeader);
     // Topic HBox
     HBox topicHB = new HBox(20);
-    ObservableList<String> topics =
-		    FXCollections.observableArrayList(
-		        "Other");
-		
-    Label topicPrompt = new Label("Topic:");
-    topicPrompt.setFont(Config.SIZE14);
-    topicHB.getChildren().add(topicPrompt);
-    ComboBox<String> topic = new ComboBox<String>(topics);
-    topicHB.getChildren().add(topic);
+    topicHB.getChildren().add(Main.topicBox);
     VBox otherTopicVB = new VBox(10); // groups other topic label with textbox
     Label otherPrompt =
         new Label("If you selected \"Other\", please type the name of the new topic below:");
@@ -130,13 +122,14 @@ public class AddQuestion implements Window {
 			@Override public void handle(ActionEvent t) {
 				String questionTopic;
 				try {
-					if(!topic.getValue().equals("Other"))
-						questionTopic = topic.getValue();
+					if(!Main.topic.getValue().equals("Other"))
+						questionTopic = Main.topic.getValue();
 					else {
 						questionTopic = otherText.getText();
 					}
 					answerMap.put(correctT.getText(), true);
 					Question newQuestion = new Question(questionTopic, question.getText(), answerMap);
+					Main.questionList.addQuestion(newQuestion);
 					Main.numQ++;
 					stage.setScene(Main.windows[3].getScene());
 				} catch(Exception e) {
