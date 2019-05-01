@@ -49,8 +49,9 @@ public class QuestionAdded implements Window {
     buttons.setAlignment(Pos.CENTER);
     buttons.getChildren().add(Main.buttonList.get(0));
     buttons.getChildren().add(Main.buttonList.get(1));
-    buttons.getChildren().add(Main.buttonList.get(2));
+    buttons.getChildren().add(Main.buttonList.get(3));
     root.getChildren().add(buttons);
+    root.getChildren().add(Main.buttonList.get(2));
     return scene;
   }
 
