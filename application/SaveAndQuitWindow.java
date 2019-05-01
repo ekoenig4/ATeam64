@@ -50,7 +50,7 @@ public class SaveAndQuitWindow implements Window{
     // Attempting to load the entered filename
     saveButton.setOnAction(new EventHandler<ActionEvent>() {
         @Override public void handle(ActionEvent t) { 
-          Main.questionList.Save(filename.getText());
+          Main.questionList.Save(filename.getText().concat(".json"));
           stage.close();
         }
     });
