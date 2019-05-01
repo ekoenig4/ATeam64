@@ -87,10 +87,14 @@ public class AddQuestion implements Window {
     addAns.setOnAction(new EventHandler<ActionEvent>() {
       @Override
       public void handle(ActionEvent t) {
+        // display the incorrect answers added
         if (!incorrect.getText().replaceAll("\\s+", "").equals("")) {
           answerMap.put(incorrect.getText(), false);
           String text = incorrectAnswers.getText();
-          incorrectAnswers.setText(text + incorrect.getText() + ", ");
+          if (text.equals("Incorrect Answers: "))
+            incorrectAnswers.setText(text + incorrect.getText());
+          else
+            incorrectAnswers.setText(text + ", " + incorrect.getText());
           incorrect.clear();
         }
       }

@@ -50,16 +50,21 @@ public class CreateQuiz implements Window {
     // TOPIC SELECTION
     HBox topicHB = new HBox(20);
     topicHB.getChildren().add(Main.topicBox);
+    // allows user to add multiple topics to the quiz
     Button addTopic = new Button("Add Topic to Quiz");
     Label topicsAdded = new Label("Topics currently added: ");
     addTopic.setOnAction(new EventHandler<ActionEvent>() {
       @Override
       public void handle(ActionEvent t) {
-        if (!Main.topic.getValue().equals("Other")) {
+        // can add any topic that is not "Other" and that is not already added
+        if (!Main.topic.getValue().equals("Other") && !quizTopics.contains(Main.topic.getValue())) {
           String addedTopic = Main.topic.getValue();
           quizTopics.add(addedTopic);
           String topicsText = topicsAdded.getText();
-          topicsAdded.setText(topicsText + addedTopic + ", ");
+          if (topicsText.equals("Topics currently added: "))
+            topicsAdded.setText(topicsText + addedTopic);
+          else
+            topicsAdded.setText(topicsText + ", " + addedTopic);
         }
       }
     });
