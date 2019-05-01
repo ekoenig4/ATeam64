@@ -7,16 +7,16 @@
  */
 package application;
 
-import java.io.FileReader;
 import java.util.HashMap;
 
-import org.json.simple.parser.JSONParser;
-
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
@@ -47,7 +47,15 @@ public class AddQuestion implements Window {
     root.getChildren().add(addQHeader);
     // Topic HBox
     HBox topicHB = new HBox(20);
-    topicHB.getChildren().add(Main.topicBox);
+    ObservableList<String> topics =
+		    FXCollections.observableArrayList(
+		        "Other");
+		
+    Label topicPrompt = new Label("Topic:");
+    topicPrompt.setFont(Config.SIZE14);
+    topicHB.getChildren().add(topicPrompt);
+    ComboBox<String> topic = new ComboBox<String>(topics);
+    topicHB.getChildren().add(topic);
     VBox otherTopicVB = new VBox(10); // groups other topic label with textbox
     Label otherPrompt =
         new Label("If you selected \"Other\", please type the name of the new topic below:");
@@ -84,23 +92,60 @@ public class AddQuestion implements Window {
     incorrectTVB.getChildren().add(incorrect);
     // will eventually give the option of adding a greater amount of incorrect answers instead of max 4
     Button addAns = new Button("Add Incorrect Answer");
+    Button removeAns = new Button("Remove Incorrect Answer");
     Label incorrectAnswers = new Label("Incorrect Answers: ");
     addAns.setOnAction(new EventHandler<ActionEvent>() {
 			@Override public void handle(ActionEvent t) {
-				answerMap.put(incorrect.getText(), false);
-				String text = incorrectAnswers.getText();
-				incorrectAnswers.setText(text+incorrect.getText()+", ");
-				incorrect.clear();
+				if(!incorrect.getText().replaceAll("\\s+","").equals("")) {
+					answerMap.put(incorrect.getText(), false);
+					String text = incorrectAnswers.getText();
+					incorrectAnswers.setText(text+incorrect.getText()+", ");
+					incorrect.clear();
+				}
 			}
 		});
-    incorrectTVB.getChildren().add(addAns);
+    removeAns.setOnAction(new EventHandler<ActionEvent>() {
+			@Override public void handle(ActionEvent t) {
+				if(!incorrect.getText().replaceAll("\\s+","").equals("")) {
+					answerMap.remove(incorrect.getText());
+					String text = incorrectAnswers.getText();
+					text = text.replace(incorrect.getText()+", ", "");
+					incorrectAnswers.setText(text);
+					incorrect.clear();
+				}
+			}
+		});
+    HBox incorrectButtons = new HBox();
+    incorrectTVB.getChildren().add(incorrectButtons);
+    incorrectButtons.getChildren().add(addAns);
+    incorrectButtons.getChildren().add(removeAns);
     incorrectTVB.getChildren().add(incorrectAnswers);
     incorrectBox.getChildren().add(incorrectL);
     incorrectBox.getChildren().add(incorrectTVB);
     root.getChildren().add(incorrectBox);
     HBox lowerButtons = new HBox(20);
     lowerButtons.getChildren().add(new SwapScreen("Back", Main.windows[0], stage));
-    lowerButtons.getChildren().add(new SwapScreen("Add Question", Main.windows[3], stage));
+    Button addQ = new Button("Add Question");
+    addQ.setOnAction(new EventHandler<ActionEvent>() {
+			@Override public void handle(ActionEvent t) {
+				String questionTopic;
+				try {
+					if(!topic.getValue().equals("Other"))
+						questionTopic = topic.getValue();
+					else {
+						questionTopic = otherText.getText();
+					}
+					answerMap.put(correctT.getText(), true);
+					Question newQuestion = new Question(questionTopic, question.getText(), answerMap);
+					Main.numQ++;
+					stage.setScene(Main.windows[3].getScene());
+				} catch(Exception e) {
+					Label error = new Label("Please enter a valid question");
+					lowerButtons.getChildren().add(error);
+				}
+			}
+		});
+    lowerButtons.getChildren().add(addQ);
     root.getChildren().add(lowerButtons);
     return scene;
   }

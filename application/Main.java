@@ -28,6 +28,7 @@ public class Main extends Application {
 	public static Window[] windows; // stores all windows that will be used
 	public static HBox topicBox;
 	public static ArrayList<Button> buttonList;
+	public static int numQ = 0;
 
 	
 	@Override
@@ -47,7 +48,8 @@ public class Main extends Application {
 	    Label topicPrompt = new Label("Topic:");
 	    topicPrompt.setFont(Config.SIZE14);
 	    topicBox.getChildren().add(topicPrompt);
-	    topicBox.getChildren().add(new ComboBox<String>(topics));
+	    ComboBox<String> topic = new ComboBox<String>(topics);
+	    topicBox.getChildren().add(topic);
 	    buttonList = new ArrayList<Button>();
 	    
 		try {
