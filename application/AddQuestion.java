@@ -101,6 +101,7 @@ public class AddQuestion implements Window {
         }
       }
     });
+    // allows user to remove incorrect answers they have already added
     removeAns.setOnAction(new EventHandler<ActionEvent>() {
       @Override
       public void handle(ActionEvent t) {
@@ -113,6 +114,7 @@ public class AddQuestion implements Window {
         }
       }
     });
+    // add all buttons and labels into a horizontal box just above the back/add buttons
     HBox incorrectButtons = new HBox();
     incorrectTVB.getChildren().add(incorrectButtons);
     incorrectButtons.getChildren().add(addAns);
@@ -121,6 +123,7 @@ public class AddQuestion implements Window {
     incorrectBox.getChildren().add(incorrectL);
     incorrectBox.getChildren().add(incorrectTVB);
     root.getChildren().add(incorrectBox);
+    // Back button allows user to get to Home screen without updating questions
     HBox lowerButtons = new HBox(20);
     lowerButtons.getChildren().add(new SwapScreen("Back", Main.windows[0], stage));
     Button addQ = new Button("Add Question");

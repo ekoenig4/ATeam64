@@ -38,7 +38,7 @@ public class Main extends Application {
   public void start(Stage primaryStage) {
     windows = new Window[] {new Home(primaryStage), new AddQuestion(primaryStage),
         new LoadQuestion(primaryStage), 
-        new CreateQuiz(primaryStage), };
+        new CreateQuiz(primaryStage), new QuitWindow(primaryStage), new SaveWindow(primaryStage)};
     
     topics = FXCollections.observableArrayList("Other");
 

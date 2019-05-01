@@ -75,7 +75,6 @@ public class CreateQuiz implements Window {
 		topicHB.getChildren().add(topicsAdded);
 		root.getChildren().add(topicHB);
 
-
 		// NUMBER OF QUESTIONS AREA
 		HBox numQsHB = new HBox(10);
 		Label numQsLabel = new Label("Enter number of questions for the quiz:");
@@ -134,7 +133,6 @@ public class CreateQuiz implements Window {
 				.limit(nQuestions) // random numbers will be distinct and limited to numQuestions
 				.mapToObj(allQuestions::get) // maps numbers to get method of allQuestions
 				.collect(Collectors.toList()); // collects questions in a list
-
 		this.quiz = quizQuestions;
 	}
 }
