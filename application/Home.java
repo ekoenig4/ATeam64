@@ -23,10 +23,10 @@ import javafx.stage.Stage;
  * currently added to the program and in addition to the "Add Questions" and "Load Questions"
  * buttons, a "Generate Quiz" button is also available.
  */
-public class QuestionAdded implements Window {
+public class Home implements Window {
   private Stage stage;
 
-  public QuestionAdded(Stage stage) {
+  public Home (Stage stage) {
     this.stage = stage;
   }
 
@@ -41,15 +41,20 @@ public class QuestionAdded implements Window {
 
     root.getChildren().add(currentNum);
     VBox.setMargin(currentNum, border);
+    SwapScreen AddQButton = new SwapScreen("Add Questions", Main.windows[1], stage);
+    AddQButton.setPrefSize(200, 100);
+    AddQButton.setFont(Config.SIZE14);
+    SwapScreen LoadQButton = new SwapScreen("Load Questions", Main.windows[2], stage);
+    LoadQButton.setPrefSize(200, 100);
+    LoadQButton.setFont(Config.SIZE14);
     HBox buttons = new HBox(50);
-    SwapScreen TakeQButton = new SwapScreen("Take a Quiz", Main.windows[4], stage);
+    SwapScreen TakeQButton = new SwapScreen("Take a Quiz", Main.windows[3], stage);
     TakeQButton.setPrefSize(200, 100);
     TakeQButton.setFont(Config.SIZE14);
-    Main.buttonList.add(TakeQButton);
     buttons.setAlignment(Pos.CENTER);
-    buttons.getChildren().add(Main.buttonList.get(0));
-    buttons.getChildren().add(Main.buttonList.get(1));
-    buttons.getChildren().add(Main.buttonList.get(2));
+    buttons.getChildren().add(AddQButton);
+    buttons.getChildren().add(LoadQButton);
+    buttons.getChildren().add(TakeQButton);
     root.getChildren().add(buttons);
     return scene;
   }

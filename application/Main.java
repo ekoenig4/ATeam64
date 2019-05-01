@@ -25,7 +25,6 @@ import javafx.scene.layout.HBox;
 public class Main extends Application {
   public static Window[] windows; // stores all windows that will be used
   public static HBox topicBox;
-  public static ArrayList<Button> buttonList;
   public static ObservableList<String> topics;
   public static ComboBox<String> topic;
   public static QuestionList questionList;
@@ -38,8 +37,8 @@ public class Main extends Application {
 
   @Override
   public void start(Stage primaryStage) {
-    windows = new Window[] {new StartScreen(primaryStage), new AddQuestion(primaryStage),
-        new LoadQuestion(primaryStage), new QuestionAdded(primaryStage),
+    windows = new Window[] {new Home(primaryStage), new AddQuestion(primaryStage),
+        new LoadQuestion(primaryStage), 
         new CreateQuiz(primaryStage), };
     
     topics = FXCollections.observableArrayList("Other");
@@ -50,7 +49,6 @@ public class Main extends Application {
     topicBox.getChildren().add(topicPrompt);
     topic = new ComboBox<String>(topics);
     topicBox.getChildren().add(topic);
-    buttonList = new ArrayList<Button>();
     questionList = new QuestionList();
 
     try {

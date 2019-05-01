@@ -136,7 +136,7 @@ public class AddQuestion implements Window {
           Question newQuestion = new Question(questionTopic, question.getText(), answerMap);
           Main.questionList.addQuestion(newQuestion);
           Main.numQ++;
-          stage.setScene(Main.windows[3].getScene());
+          stage.setScene(Main.windows[0].getScene());
         } catch (Exception e) {
           Label error = new Label("Please enter a valid question");
           lowerButtons.getChildren().add(error);

@@ -59,7 +59,7 @@ public class CreateQuiz implements Window {
         // can add any topic that is not "Other" and that is not already added
         if (!Main.topic.getValue().equals("Other") && !quizTopics.contains(Main.topic.getValue())) {
           String addedTopic = Main.topic.getValue();
-          quizTopics.add(addedTopic);
+          quizTopics.add(addedTopic); // updates the topic list for the quiz
           String topicsText = topicsAdded.getText();
           if (topicsText.equals("Topics currently added: "))
             topicsAdded.setText(topicsText + addedTopic);
@@ -71,7 +71,6 @@ public class CreateQuiz implements Window {
     topicHB.getChildren().add(addTopic);
     topicHB.getChildren().add(topicsAdded);
     root.getChildren().add(topicHB);
-
 
     // NUMBER OF QUESTIONS AREA
     HBox numQsHB = new HBox(10);
@@ -116,35 +115,36 @@ public class CreateQuiz implements Window {
     root.getChildren().add(buttons);
     return scene;
   }
+
   //
   //
   // public void setQuizTopics(ArrayList<String> topicList) {
   // this.quizTopics = topicList;
   // }
   //
-  // public void makeQuiz(QuestionList questionList, int numQuestions) {
-  //
-  // ArrayList<ArrayList<Question>> allQuestionLists = new ArrayList<ArrayList<Question>>();
-  // // Get list of topics from question list
-  // for (String topic : questionList.allTopicNames()) {
-  // if (this.quizTopics.contains(topic))
-  // allQuestionLists.add(questionList.topicList.get(topic).getQuestions());
-  // }
-  // // Get List of Questions from the topics selected
-  // List<Question> allQuestions = allQuestionLists.stream()
-  // .flatMap(Collection::stream)
-  // .collect(Collectors.toList());
-  // // Use random stream of numbers to get random stream of questions
-  // Random rand = new Random();
-  // List<Question> quizQuestions = rand
-  // .ints(0,allQuestions.size()) // random stream of integers between 0 and allQuestions - 1
-  // .distinct()
-  // .limit(numQuestions) // random numbers will be distinct and limited to numQuestions
-  // .mapToObj(allQuestions::get) // maps numbers to get method of allQuestions
-  // .collect(Collectors.toList()); // collects questions in a list
-  //
-  // this.quiz = quizQuestions;
-  // }
+  public void makeQuiz(QuestionList questionList, int numQuestions) {
+
+    ArrayList<ArrayList<Question>> allQuestionLists = new ArrayList<ArrayList<Question>>();
+    // Get list of topics from question list
+    for (String topic : questionList.allTopicNames()) {
+      if (this.quizTopics.contains(topic))
+        allQuestionLists.add(questionList.topicList.get(topic).getQuestions());
+    }
+    // Get List of Questions from the topics selected
+    List<Question> allQuestions =
+        allQuestionLists.stream().flatMap(Collection::stream).collect(Collectors.toList());
+    // Use random stream of numbers to get random stream of questions
+    Random rand = new Random();
+    List<Question> quizQuestions = rand.ints(0, allQuestions.size()) // random stream of integers
+                                                                     // between 0 and allQuestions -
+                                                                     // 1
+        .distinct().limit(numQuestions) // random numbers will be distinct and limited to
+                                        // numQuestions
+        .mapToObj(allQuestions::get) // maps numbers to get method of allQuestions
+        .collect(Collectors.toList()); // collects questions in a list
+
+    this.quiz = quizQuestions;
+  }
 
   // private void setFieldsForTesting() {
   // HashMap<String, Boolean> answers1 = new HashMap<String, Boolean>();
