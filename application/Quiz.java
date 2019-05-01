@@ -12,6 +12,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -28,31 +30,31 @@ import javafx.stage.Stage;
 public class Quiz implements Window {
 	private Stage stage;
 	private List<Question> questions;
-	private Question currentQuestion;
-	private int questionNumber;
 	private int numCorrectAnswers;
+	private int questionNumber;
 
-	public Quiz(Stage stage, List<Question> questions, Question currentQuestion, int numCorrectAnswers) {
+	public Quiz(Stage stage, List<Question> questions) {
 		this.stage = stage;
 		this.questions = questions;
-		this.currentQuestion = currentQuestion;
-		this.questionNumber = questions.indexOf(currentQuestion) + 1;
-		this.numCorrectAnswers = numCorrectAnswers;
+		this.numCorrectAnswers = 0;
+		this.questionNumber = 0;
 	}
 
 	@Override
 	public Scene getScene() {
 		// Set root box
+		Question currentQuestion = questions.get(questionNumber);
+  	questionNumber++;
 		VBox root = new VBox(20);
 		root.setPadding(new Insets(10, 25, 25, 25));
 		root.setSpacing(10);
 		Scene scene = new Scene(root, 800, 600);
 		// Set Header with question number
-		Label questionNumber = new Label("Question Number #" + this.questionNumber);
-		questionNumber.setFont(Config.SIZE24);
-		root.getChildren().add(questionNumber);
+		Label numLabel = new Label("Question Number #" + (this.questionNumber));
+		numLabel.setFont(Config.SIZE24);
+		root.getChildren().add(numLabel);
 		// Give question text	
-		Label questionText = new Label(this.currentQuestion.getQuestion());
+		Label questionText = new Label(currentQuestion.getQuestion());
 		questionText.setFont(Config.SIZE14);
 		questionText.setWrapText(true);
 		root.getChildren().add(questionText);
@@ -63,7 +65,7 @@ public class Quiz implements Window {
 		// after getting the response, get the boolean associated with the selected
 		// answer
 		
-		HashMap<String, Boolean> answerMap = this.currentQuestion.getAnswers();
+		HashMap<String, Boolean> answerMap = currentQuestion.getAnswers();
 		Set<String> answerSet = answerMap.keySet();
 		
 		Button submit = new Button("Submit");
@@ -72,8 +74,8 @@ public class Quiz implements Window {
 		
 		ToggleGroup group = new ToggleGroup();
 		// add a CheckBox and QuestionText for each question
-		for (String question : answerSet) {
-			RadioButton currentAnswer = new RadioButton(question);
+		for (String ans : answerSet) {
+			RadioButton currentAnswer = new RadioButton(ans);
 			radioButtons.add(currentAnswer);
 			currentAnswer.setToggleGroup(group);
 			currentAnswer.setOnAction(e -> submit.setDisable(false));
@@ -116,11 +118,18 @@ public class Quiz implements Window {
 				responseBox.getChildren().add(correctAnswer);
 			}
 			
-			if (this.questionNumber < this.questions.size())
-				responseBox.getChildren().add(new SwapScreen("Continue", 
-						new Quiz(stage, this.questions, this.questions.get(this.questionNumber), this.numCorrectAnswers)
-						, stage));
-			else {
+			if (this.questionNumber < this.questions.size()) {
+				Button cont = new Button("Continue");
+				cont.setOnAction(new EventHandler<ActionEvent>() {
+		      @Override
+		      public void handle(ActionEvent t) {
+		      	stage.setScene(getScene());
+		      }
+				});
+				responseBox.getChildren().add(cont);
+			} else {
+				//THIS IS WHERE THE RESULT SCREEN SHOULD GO
+				
 				Label quizCompleteMessage = new Label("Quiz Complete! Results: " + this.numCorrectAnswers + 
 						" correct answer(s) out of " + this.questions.size());
 				quizCompleteMessage.setFont(Config.BOLD18);

@@ -94,7 +94,6 @@ public class CreateQuiz implements Window {
 				if (quizTopics.size() > 0 && isInteger(numQsTA.getText())) {
 					nQuestions = Integer.parseInt(numQsTA.getText());
 					makeQuiz();
-					System.out.println(quiz);
 				}
 			}
 		});
@@ -133,5 +132,8 @@ public class CreateQuiz implements Window {
 				.mapToObj(allQuestions::get) // maps numbers to get method of allQuestions
 				.collect(Collectors.toList()); // collects questions in a list
 		this.quiz = quizQuestions;
+		
+		Window takeQuiz = new Quiz(stage,this.quiz);
+		stage.setScene(takeQuiz.getScene());
 	}
 }
