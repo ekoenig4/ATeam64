@@ -11,9 +11,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
-
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
@@ -44,6 +46,30 @@ public class CreateQuiz implements Window {
 		quizHeader.setFont(Config.SIZE24);
 		root.getChildren().add(quizHeader);
 		root.getChildren().add(Main.topicBox);
+		
+	      Button addTopic = new Button("Add Topic to Quiz");
+          addTopic.setOnAction(new EventHandler<ActionEvent>() {
+                  @Override public void handle(ActionEvent t) {
+//                    String questionTopic;
+//                    try {
+//                        if(!Main.topic.getValue().equals("Other"))
+//                            questionTopic = Main.topic.getValue();
+//                        else {
+//                            questionTopic = otherText.getText();
+//                        }
+//                        answerMap.put(correctT.getText(), true);
+//                        Question newQuestion = new Question(questionTopic, question.getText(), answerMap);
+//                        Main.questionList.addQuestion(newQuestion);
+//                        Main.numQ++;
+//                        stage.setScene(Main.windows[3].getScene());
+//                    } catch(Exception e) {
+//                        Label error = new Label("Please enter a valid question");
+//                        lowerButtons.getChildren().add(error);
+//                    }
+                  }
+              });
+		
+		
 		// NUMBER OF QUESTIONS AREA
 		HBox numQsHB = new HBox(10);
 		Label numQsLabel = new Label("Enter number of questions for the quiz:");
@@ -56,39 +82,64 @@ public class CreateQuiz implements Window {
 		// decision buttons area
 		HBox buttons = new HBox(20);
 		buttons.getChildren().add(new SwapScreen("Back", Main.windows[3], stage));
-		buttons.getChildren().add(new SwapScreen("Generate Quiz", new Quiz(stage, this.quiz, this.quiz.get(0), 0), stage));
+		//buttons.getChildren().add(new SwapScreen("Generate Quiz", new Quiz(stage, this.quiz, this.quiz.get(0), 0), stage));
+		
+		Button genQuiz = new Button("Generate Quiz");
+		    genQuiz.setOnAction(new EventHandler<ActionEvent>() {
+		            @Override public void handle(ActionEvent t) {
+//		                String questionTopic;
+//		                try {
+//		                    if(!Main.topic.getValue().equals("Other"))
+//		                        questionTopic = Main.topic.getValue();
+//		                    else {
+//		                        questionTopic = otherText.getText();
+//		                    }
+//		                    answerMap.put(correctT.getText(), true);
+//		                    Question newQuestion = new Question(questionTopic, question.getText(), answerMap);
+//		                    Main.questionList.addQuestion(newQuestion);
+//		                    Main.numQ++;
+//		                    stage.setScene(Main.windows[3].getScene());
+//		                } catch(Exception e) {
+//		                    Label error = new Label("Please enter a valid question");
+//		                    lowerButtons.getChildren().add(error);
+//		                }
+		            }
+		        });
+		
+		
+		
 		root.getChildren().add(buttons);
 		return scene;
 	}
-	
-	
-	public void setQuizTopics(ArrayList<String> topicList) {
-		this.quizTopics = topicList;
-	}
-
-	public void makeQuiz(QuestionList questionList, int numQuestions) {
-		
-		ArrayList<ArrayList<Question>> allQuestionLists = new ArrayList<ArrayList<Question>>();
-		// Get list of topics from question list
-		for (String topic : questionList.allTopicNames()) {
-			if (this.quizTopics.contains(topic))
-				allQuestionLists.add(questionList.topicList.get(topic).getQuestions());
-		}
-		// Get List of Questions from the topics selected
-		List<Question> allQuestions = allQuestionLists.stream()
-				.flatMap(Collection::stream)
-				.collect(Collectors.toList());
-		// Use random stream of numbers to get random stream of questions
-		Random rand = new Random();
-		List<Question> quizQuestions = rand
-				.ints(0,allQuestions.size()) // random stream of integers between 0 and allQuestions - 1
-				.distinct()
-				.limit(numQuestions) // random numbers will be distinct and limited to numQuestions
-				.mapToObj(allQuestions::get) // maps numbers to get method of allQuestions
-				.collect(Collectors.toList()); // collects questions in a list
-
-		this.quiz = quizQuestions;
-	}
+//	
+//	
+//	public void setQuizTopics(ArrayList<String> topicList) {
+//		this.quizTopics = topicList;
+//	}
+//
+//	public void makeQuiz(QuestionList questionList, int numQuestions) {
+//		
+//		ArrayList<ArrayList<Question>> allQuestionLists = new ArrayList<ArrayList<Question>>();
+//		// Get list of topics from question list
+//		for (String topic : questionList.allTopicNames()) {
+//			if (this.quizTopics.contains(topic))
+//				allQuestionLists.add(questionList.topicList.get(topic).getQuestions());
+//		}
+//		// Get List of Questions from the topics selected
+//		List<Question> allQuestions = allQuestionLists.stream()
+//				.flatMap(Collection::stream)
+//				.collect(Collectors.toList());
+//		// Use random stream of numbers to get random stream of questions
+//		Random rand = new Random();
+//		List<Question> quizQuestions = rand
+//				.ints(0,allQuestions.size()) // random stream of integers between 0 and allQuestions - 1
+//				.distinct()
+//				.limit(numQuestions) // random numbers will be distinct and limited to numQuestions
+//				.mapToObj(allQuestions::get) // maps numbers to get method of allQuestions
+//				.collect(Collectors.toList()); // collects questions in a list
+//
+//		this.quiz = quizQuestions;
+//	}
 	
 //	private void setFieldsForTesting() {
 //		HashMap<String, Boolean> answers1 = new HashMap<String, Boolean>();

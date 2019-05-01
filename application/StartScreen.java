@@ -33,10 +33,9 @@ public class StartScreen implements Window{
     root.setAlignment(Pos.CENTER);
     Insets border = new Insets(10);
     Scene scene = new Scene(root,800,600);
-    
+    // HEADER
     Label welcome = new Label("Welcome! Please add or load questions.");
     welcome.setFont(Config.SIZE24);
-   
     root.getChildren().add(welcome);
     VBox.setMargin(welcome, border);
     HBox buttons = new HBox(200);

@@ -1,14 +1,11 @@
 /**
- * Filename:   AddQuestion.java
- * Class: 		 CS 400, Spring 2019
- * Project:    Final Team Project
- * Due Date:   April 25, 2019
- * Authors:    Alexandra Borukhovetskaya, Evan Koenig, Angelique Stepanenkov, Matthew Palmer, Otto Baier
+ * Filename: AddQuestion.java Class: CS 400, Spring 2019 Project: Final Team Project Due Date: April
+ * 25, 2019 Authors: Alexandra Borukhovetskaya, Evan Koenig, Angelique Stepanenkov, Matthew Palmer,
+ * Otto Baier
  */
 package application;
 
 import java.util.HashMap;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -82,31 +79,34 @@ public class AddQuestion implements Window {
     TextArea incorrect = new TextArea();
     incorrect.setPrefHeight(50);
     incorrectTVB.getChildren().add(incorrect);
-    // will eventually give the option of adding a greater amount of incorrect answers instead of max 4
+    // will eventually give the option of adding a greater amount of incorrect answers instead of
+    // max 4
     Button addAns = new Button("Add Incorrect Answer");
     Button removeAns = new Button("Remove Incorrect Answer");
     Label incorrectAnswers = new Label("Incorrect Answers: ");
     addAns.setOnAction(new EventHandler<ActionEvent>() {
-			@Override public void handle(ActionEvent t) {
-				if(!incorrect.getText().replaceAll("\\s+","").equals("")) {
-					answerMap.put(incorrect.getText(), false);
-					String text = incorrectAnswers.getText();
-					incorrectAnswers.setText(text+incorrect.getText()+", ");
-					incorrect.clear();
-				}
-			}
-		});
+      @Override
+      public void handle(ActionEvent t) {
+        if (!incorrect.getText().replaceAll("\\s+", "").equals("")) {
+          answerMap.put(incorrect.getText(), false);
+          String text = incorrectAnswers.getText();
+          incorrectAnswers.setText(text + incorrect.getText() + ", ");
+          incorrect.clear();
+        }
+      }
+    });
     removeAns.setOnAction(new EventHandler<ActionEvent>() {
-			@Override public void handle(ActionEvent t) {
-				if(!incorrect.getText().replaceAll("\\s+","").equals("")) {
-					answerMap.remove(incorrect.getText());
-					String text = incorrectAnswers.getText();
-					text = text.replace(incorrect.getText()+", ", "");
-					incorrectAnswers.setText(text);
-					incorrect.clear();
-				}
-			}
-		});
+      @Override
+      public void handle(ActionEvent t) {
+        if (!incorrect.getText().replaceAll("\\s+", "").equals("")) {
+          answerMap.remove(incorrect.getText());
+          String text = incorrectAnswers.getText();
+          text = text.replace(incorrect.getText() + ", ", "");
+          incorrectAnswers.setText(text);
+          incorrect.clear();
+        }
+      }
+    });
     HBox incorrectButtons = new HBox();
     incorrectTVB.getChildren().add(incorrectButtons);
     incorrectButtons.getChildren().add(addAns);
@@ -119,25 +119,26 @@ public class AddQuestion implements Window {
     lowerButtons.getChildren().add(new SwapScreen("Back", Main.windows[0], stage));
     Button addQ = new Button("Add Question");
     addQ.setOnAction(new EventHandler<ActionEvent>() {
-			@Override public void handle(ActionEvent t) {
-				String questionTopic;
-				try {
-					if(!Main.topic.getValue().equals("Other"))
-						questionTopic = Main.topic.getValue();
-					else {
-						questionTopic = otherText.getText();
-					}
-					answerMap.put(correctT.getText(), true);
-					Question newQuestion = new Question(questionTopic, question.getText(), answerMap);
-					Main.questionList.addQuestion(newQuestion);
-					Main.numQ++;
-					stage.setScene(Main.windows[3].getScene());
-				} catch(Exception e) {
-					Label error = new Label("Please enter a valid question");
-					lowerButtons.getChildren().add(error);
-				}
-			}
-		});
+      @Override
+      public void handle(ActionEvent t) {
+        String questionTopic;
+        try {
+          if (!Main.topic.getValue().equals("Other")) // if the user has selected a topic
+            questionTopic = Main.topic.getValue();
+          else { // the user has put in a new topic
+            questionTopic = otherText.getText();
+          }
+          answerMap.put(correctT.getText(), true);
+          Question newQuestion = new Question(questionTopic, question.getText(), answerMap);
+          Main.questionList.addQuestion(newQuestion);
+          Main.numQ++;
+          stage.setScene(Main.windows[3].getScene());
+        } catch (Exception e) {
+          Label error = new Label("Please enter a valid question");
+          lowerButtons.getChildren().add(error);
+        }
+      }
+    });
     lowerButtons.getChildren().add(addQ);
     root.getChildren().add(lowerButtons);
     return scene;

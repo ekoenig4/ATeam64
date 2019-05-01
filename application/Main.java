@@ -40,8 +40,8 @@ public class Main extends Application {
   public void start(Stage primaryStage) {
     windows = new Window[] {new StartScreen(primaryStage), new AddQuestion(primaryStage),
         new LoadQuestion(primaryStage), new QuestionAdded(primaryStage),
-        new CreateQuiz(primaryStage),};
-
+        new CreateQuiz(primaryStage), };
+    
     topics = FXCollections.observableArrayList("Other");
 
     topicBox = new HBox(20);
