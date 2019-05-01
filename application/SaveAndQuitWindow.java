@@ -11,14 +11,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class SaveWindow implements Window{
+public class SaveAndQuitWindow implements Window{
   private Stage stage;
   
   /**
    * Constructor, sets current stage
    * @param stage
    */
-  public SaveWindow(Stage stage) {
+  public SaveAndQuitWindow(Stage stage) {
       this.stage = stage;
   }
 
