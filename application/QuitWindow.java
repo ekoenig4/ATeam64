@@ -33,6 +33,7 @@ public class QuitWindow implements Window{
          stage.close();
       }
     });
+    
     SwapScreen saveAndQuit = new SwapScreen("Save and Quit", Main.windows[5], stage);
     
     

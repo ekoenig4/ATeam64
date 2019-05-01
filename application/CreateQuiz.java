@@ -110,7 +110,6 @@ public class CreateQuiz implements Window {
 		return true;
 	}
 
-
 	public void setQuizTopics(ArrayList<String> topicList) {
 		this.quizTopics = topicList;
 	}
