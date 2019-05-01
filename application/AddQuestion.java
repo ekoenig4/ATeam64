@@ -1,7 +1,9 @@
 /**
- * Filename: AddQuestion.java Class: CS 400, Spring 2019 Project: Final Team Project Due Date: April
- * 25, 2019 Authors: Alexandra Borukhovetskaya, Evan Koenig, Angelique Stepanenkov, Matthew Palmer,
- * Otto Baier
+ * Filename: AddQuestion.java
+ * Class: CS 400, Spring 2019 
+ * Project: Final Team Project 
+ * Due Date: May 2, 2019 
+ * Authors: Alexandra Borukhovetskaya, Evan Koenig, Angelique Stepanenkov, Matthew Palmer, Otto Baier
  */
 package application;
 
