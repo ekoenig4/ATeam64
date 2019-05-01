@@ -53,7 +53,7 @@ public class QuitWindow implements Window{
     sure.setFont(Font.font(20));
     root.getChildren().add(sure);
     root.getChildren().add(options);
-    Scene scene = new Scene(root, 600, 400);  
+    Scene scene = new Scene(root, 800, 600);  
     
     return scene;
   }

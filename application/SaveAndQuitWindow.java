@@ -27,7 +27,7 @@ public class SaveAndQuitWindow implements Window{
     VBox root = new VBox(20);
     root.setPadding(new Insets(10, 25, 25, 25));
     root.setSpacing(10);
-    Scene scene = new Scene(root, 500, 150);
+    Scene scene = new Scene(root, 800, 600);
     // HEADER
     Label saveHeader = new Label("Enter File Name");
     saveHeader.setFont(Config.SIZE24);
