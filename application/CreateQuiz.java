@@ -93,6 +93,8 @@ public class CreateQuiz implements Window {
 			public void handle(ActionEvent t) {
 				if (quizTopics.size() > 0 && isInteger(numQsTA.getText())) {
 					nQuestions = Integer.parseInt(numQsTA.getText());
+					if (nQuestions >= Main.questionList.getNumOfQuestions())
+						nQuestions = Main.questionList.getNumOfQuestions();
 					makeQuiz();
 				}
 			}
