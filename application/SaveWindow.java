@@ -46,12 +46,18 @@ public class SaveWindow implements Window{
     fileBox.setPrefHeight(10);
     fileBox.getChildren().add(loadDesc);
     root.getChildren().add(fileBox);
+    Label msg = new Label("");
+    root.getChildren().add(msg);
     Button saveButton = new Button("Save");
     // save questions under filename
     saveButton.setOnAction(new EventHandler<ActionEvent>() {
         @Override public void handle(ActionEvent t) { 
-          Main.questionList.Save(filename.getText().concat(".json"));
-          stage.setScene(Main.windows[0].getScene());
+          if(filename.getText().isEmpty())
+            msg.setText("Please enter a file name.");
+          else {
+            Main.questionList.Save(filename.getText().concat(".json"));
+            stage.setScene(Main.windows[0].getScene());
+          }
         }
     });
     fileBox.getChildren().add(saveButton);

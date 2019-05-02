@@ -28,13 +28,13 @@ public class SaveAndQuitWindow implements Window{
     root.setPadding(new Insets(10, 25, 25, 25));
     root.setSpacing(10);
     Scene scene = new Scene(root, 800, 600);
-    // HEADER
+    // PROMPT
     Label saveHeader = new Label("Enter File Name");
     saveHeader.setFont(Config.SIZE24);
     root.getChildren().add(saveHeader);
-    // DESCRIPTION
-    Label loadDesc = new Label(".json");
-    loadDesc.setFont(Config.SIZE14);
+    // FILE EXTENSION -- so user knows not to enter ".json"
+    Label extension = new Label(".json");
+    extension.setFont(Config.SIZE14);
     // LOAD QUESTION FILE
     HBox fileBox = new HBox(20);
     Label fileLabel = new Label("Filename:");
@@ -44,14 +44,20 @@ public class SaveAndQuitWindow implements Window{
     filename.setPrefWidth(250);
     fileBox.getChildren().add(filename);
     fileBox.setPrefHeight(10);
-    fileBox.getChildren().add(loadDesc);
+    fileBox.getChildren().add(extension);
+    Label msg = new Label("");
     root.getChildren().add(fileBox);
+    root.getChildren().add(msg);
     Button saveButton = new Button("Save and Quit");
     // save questions under filename
     saveButton.setOnAction(new EventHandler<ActionEvent>() {
         @Override public void handle(ActionEvent t) { 
-          Main.questionList.Save(filename.getText().concat(".json"));
-          stage.close();
+          if(filename.getText().isEmpty())
+            msg.setText("Please enter a file name.");
+          else {
+            Main.questionList.Save(filename.getText().concat(".json"));
+            stage.close();
+          }
         }
     });
     fileBox.getChildren().add(saveButton);
