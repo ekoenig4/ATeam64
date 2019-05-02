@@ -56,18 +56,21 @@ public class SaveWindow implements Window{
     // save questions under filename
     saveButton.setOnAction(new EventHandler<ActionEvent>() {
         @Override public void handle(ActionEvent t) { 
-        	if (Main.questionList.getNumOfQuestions() == 0) {
-        		msg.setText("No questions to save");
-        		return;
-        	}
-        	try {
-						Main.questionList.Save(filename.getText().concat(".json"));
-	          stage.setScene(Main.windows[0].getScene());
-					} catch (IOException e) {
-						msg.setText("Unable to save to file: "+filename.getText().concat(".json"));
-					}
+        	if (filename.getText().isEmpty())
+  					msg.setText("Please enter a file name.");
+  				else if (Main.questionList.getNumOfQuestions() == 0)
+  					msg.setText("No questions to save");
+  				else {
+  					try {
+  						Main.questionList.Save(filename.getText().concat(".json"));
+  				    stage.setScene(Main.windows[0].getScene());
+  					} catch (IOException e) {
+  						msg.setText("Unable to save to file: "+filename.getText().concat(".json"));
+  					}
+  				}
         }
     });
+    
     saveBox.getChildren().add(saveButton);
     saveBox.getChildren().add(msg);
     fileBox.getChildren().add(saveBox);
