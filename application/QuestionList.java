@@ -111,6 +111,7 @@ public class QuestionList {
 	 * @param fname is the name of the json file to be created
 	 * @throws IOException 
 	 */
+	@SuppressWarnings("unchecked")
 	public void Save(String fname) throws IOException {
 		JSONObject jo = new JSONObject();
 		JSONArray ja = new JSONArray();
@@ -141,5 +142,6 @@ public class QuestionList {
 		FileWriter file = new FileWriter(fname);
 		file.write(jo.toJSONString());
 		file.flush();
+		file.close();
 	}
 }

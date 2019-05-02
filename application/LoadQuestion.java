@@ -7,10 +7,6 @@
  */
 package application;
 
-import java.io.FileReader;
-
-import org.json.simple.parser.JSONParser;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
