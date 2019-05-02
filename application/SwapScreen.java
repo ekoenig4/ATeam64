@@ -1,10 +1,11 @@
-/**
- * Filename: SwapScreen.java
- * Class: CS 400, Spring 2019 
- * Project: Final Team Project 
- * Due Date: May 2, 2019 
- * Authors: Alexandra Borukhovetskaya, Evan Koenig, Angelique Stepanenkov, Matthew Palmer, Otto Baier
- */
+//
+// Filename: SwapScreen.java
+// Class: CS 400, Spring 2019
+// Project: Final Team Project
+// Due Date: May 2, 2019
+// Authors: Alexandra Borukhovetskaya, Evan Koenig, Angelique Stepanenkov, Matthew Palmer, Otto
+// Baier
+//
 
 package application;
 
@@ -15,16 +16,15 @@ import javafx.stage.Stage;
 
 /**
  * Holds the name of the button and the state that the button leads to
- * 
  */
-public class SwapScreen extends Button{
-	public SwapScreen(String name,Window state,Stage stage) {
-		super(name);
-		this.setOnAction(new EventHandler<ActionEvent>() {
-			@Override 
-			public void handle(ActionEvent e) {
-				stage.setScene(state.getScene());
-			}
-		});
-	}
+public class SwapScreen extends Button {
+  public SwapScreen(String name, Window state, Stage stage) {
+    super(name);
+    this.setOnAction(new EventHandler<ActionEvent>() {
+      @Override
+      public void handle(ActionEvent e) {
+        stage.setScene(state.getScene());
+      }
+    });
+  }
 }
