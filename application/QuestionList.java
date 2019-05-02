@@ -89,10 +89,12 @@ public class QuestionList {
 			Topic t = topicList.get(topicName);
 			for (Question q : t.getQuestions()) {
 				JSONObject jq = new JSONObject();
-				jq.put("meta-data", q.getMetaData());
+				if (q.getMetaData() == null) jq.put("meta-data", "unused");
+				else                         jq.put("meta-data", q.getMetaData());
 				jq.put("questionText", q.getQuestion());
 				jq.put("topic", topicName);
-				jq.put("image",q.getImageFileName());
+				if (q.getImageFileName() == null) jq.put("image", "none");
+				else                              jq.put("image",q.getImageFileName());
 				JSONArray choiceArray = new JSONArray();
 				HashMap<String,Boolean> answers = q.getAnswers();
 				for (String ans : answers.keySet()) {
