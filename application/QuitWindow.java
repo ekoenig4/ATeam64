@@ -6,8 +6,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -41,6 +44,13 @@ public class QuitWindow implements Window{
     SwapScreen saveAndQuit = new SwapScreen("Save and Quit", Main.windows[5], stage);
     saveAndQuit.setPrefSize(150, 75);
     saveAndQuit.setFont(Config.SIZE14);
+    // dark grey background for disabled button
+    BackgroundFill grey = new BackgroundFill(Color.DARKGRAY,null,null);
+    Background disable = new Background(grey); 
+    if(Main.questionList.getNumOfQuestions() == 0) {
+      saveAndQuit.setBackground(disable);
+      saveAndQuit.setOnAction(null);
+    }
     
     SwapScreen back = new SwapScreen("Back", Main.windows[0], stage);
     back.setPrefSize(150, 75);

@@ -12,8 +12,11 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -66,10 +69,17 @@ public class Home implements Window {
     SwapScreen LoadQButton = new SwapScreen("Load Questions", Main.windows[2], stage);
     LoadQButton.setPrefSize(200, 100);
     LoadQButton.setFont(Config.SIZE14);
+    // dark grey background for disabled buttons
+    BackgroundFill grey = new BackgroundFill(Color.DARKGRAY,null,null);
+    Background disable = new Background(grey); 
     // creates "Take Quiz" button for the screen
     SwapScreen TakeQButton = new SwapScreen("Take a Quiz", Main.windows[3], stage);
     TakeQButton.setPrefSize(200, 100);
     TakeQButton.setFont(Config.SIZE14);
+    if(Main.questionList.getNumOfQuestions() == 0) {
+      TakeQButton.setBackground(disable);
+      TakeQButton.setOnAction(null);
+    }
     buttons.setAlignment(Pos.CENTER);
     // makes another row below for the save and quit buttons
     HBox options = new HBox(50);
@@ -81,6 +91,10 @@ public class Home implements Window {
     SwapScreen saveButton = new SwapScreen("Save", Main.windows[6], stage);
     saveButton.setPrefSize(100, 50);
     saveButton.setFont(Config.SIZE14);
+    if(Main.questionList.getNumOfQuestions() == 0) {
+      saveButton.setBackground(disable);
+      saveButton.setOnAction(null);
+    }
     // add save and quit in same HBox
     options.getChildren().add(saveButton);
     options.getChildren().add(quitButton);
