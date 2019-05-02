@@ -45,7 +45,6 @@ public class SaveAndQuitWindow implements Window{
 		TextArea filename = new TextArea(); // where the user can enter the filename
 		filename.setPrefHeight(10);
 		fileBox.getChildren().add(filename);
-		fileBox.setPrefHeight(10);
 		fileBox.getChildren().add(extension);
 		Button saveButton = new Button("Save and Quit");
 		fileBox.getChildren().add(saveButton);

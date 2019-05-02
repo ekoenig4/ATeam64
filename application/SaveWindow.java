@@ -47,12 +47,10 @@ public class SaveWindow implements Window{
     fileBox.getChildren().add(filename);
     fileBox.setPrefHeight(10);
     fileBox.getChildren().add(loadDesc);
-    root.getChildren().add(fileBox);
-    
-    VBox saveBox = new VBox(20);
     Button saveButton = new Button("Save");
+    fileBox.getChildren().add(saveButton);
+    root.getChildren().add(fileBox);
     Label msg = new Label();
-    msg.setFont(Config.SIZE14);
     // save questions under filename
     saveButton.setOnAction(new EventHandler<ActionEvent>() {
         @Override public void handle(ActionEvent t) { 
@@ -70,11 +68,8 @@ public class SaveWindow implements Window{
   				}
         }
     });
-    
-    saveBox.getChildren().add(saveButton);
-    saveBox.getChildren().add(msg);
-    fileBox.getChildren().add(saveBox);
     root.getChildren().add(new SwapScreen("Back",Main.windows[0],stage));
+    root.getChildren().add(msg);
     return scene;
   }
 }
