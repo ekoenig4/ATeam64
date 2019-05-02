@@ -1,10 +1,11 @@
-/**
- * Filename: AddQuestion.java
- * Class: CS 400, Spring 2019 
- * Project: Final Team Project 
- * Due Date: May 2, 2019 
- * Authors: Alexandra Borukhovetskaya, Evan Koenig, Angelique Stepanenkov, Matthew Palmer, Otto Baier
- */
+//
+// Filename: AddQuestion.java
+// Class: CS 400, Spring 2019
+// Project: Final Team Project
+// Due Date: May 2, 2019
+// Authors: Alexandra Borukhovetskaya, Evan Koenig, Angelique Stepanenkov, Matthew Palmer, Otto
+// Baier
+//
 package application;
 
 import java.util.HashMap;
@@ -23,41 +24,59 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
- * allows for a question & topic to be added manually
- *
+ * Allows for a question & topic to be added manually. Questions can only be added if "Add question"
+ * at the button of the page was selected.
  */
 public class AddQuestion implements Window {
   private Stage stage;
   HashMap<String, Boolean> answerMap = new HashMap<String, Boolean>();
 
+  /**
+   * Initialize this window's stage
+   * 
+   * @param stage
+   */
   public AddQuestion(Stage stage) {
     this.stage = stage;
   }
 
+  /**
+   * Displays the screen and interacts with the user the get new question input. The user can use a
+   * topic already available or can make a new topic by selecting "Other". Different numbers of
+   * incorrect answers can be created when pressing the "Add incorrect answer button" and answers
+   * can be removed by selecting "remove answer" and typing in the answer to remove. After pressing
+   * "add question", the question is created. After pressing "back", no question is created.
+   * 
+   * @see application.Window#getScene()
+   */
   @Override
   public Scene getScene() {
+    // initialize the display window
     VBox root = new VBox(20);
     root.setPadding(new Insets(10, 25, 25, 25));
     root.setSpacing(10);
     Scene scene = new Scene(root, 800, 600);
-    // Header
+    // Header label
     Label addQHeader = new Label("Add Question");
     addQHeader.setFont(Config.SIZE24);
     root.getChildren().add(addQHeader);
-    // Topic HBox
+    // Topic HBox holds topic box selection and text area for adding new topics
     HBox topicHB = new HBox(20);
+    // alphabetize topic list
     if (Main.topics.contains("Other")) // removes "Other" before alphabetizing
       Main.topics.remove("Other");
     Main.topics.sorted(); // alphabetize
     Main.topics.add("Other"); // re-add "Other" to be at end of list
     topicHB.getChildren().add(Main.topicBox);
     VBox otherTopicVB = new VBox(10); // groups other topic label with textbox
+    // prompt and text area for a new topic
     Label otherPrompt =
         new Label("If you selected \"Other\", please type the name of the new topic below:");
     otherPrompt.setFont(Config.SIZE14);
     otherTopicVB.getChildren().add(otherPrompt);
     TextArea otherText = new TextArea(); // other topic text area
     otherText.setPrefHeight(50);
+    // adds the topic area to the display
     otherTopicVB.getChildren().add(otherText);
     topicHB.getChildren().add(otherTopicVB);
     root.getChildren().add(topicHB);
@@ -93,7 +112,6 @@ public class AddQuestion implements Window {
     addAns.setOnAction(new EventHandler<ActionEvent>() {
       @Override
       public void handle(ActionEvent t) {
-        // display the incorrect answers added
         if (!incorrect.getText().replaceAll("\\s+", "").equals("")) {
           answerMap.put(incorrect.getText(), false);
           String text = incorrectAnswers.getText();
