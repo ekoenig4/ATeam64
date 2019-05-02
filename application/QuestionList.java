@@ -19,6 +19,12 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+/**
+ * This class holds a HashMap of topics
+ * This is the class where the program stores new questions
+ * and can load and save questions from and to json files.
+ *
+ */
 public class QuestionList {
 	private HashMap<String,Topic> topicList;
 	private int numberOfQuestions;
@@ -28,6 +34,10 @@ public class QuestionList {
 		numberOfQuestions = 0;
 	}
 
+	/**
+	 * Add a topic to the QuestionList
+	 * @param topicName the name of the topic
+	 */
 	public void addTopic(String topicName) {
 		if (!topicList.containsKey(topicName)) {
 			topicList.put(topicName, new Topic(topicName));
@@ -48,6 +58,10 @@ public class QuestionList {
 	  return numberOfQuestions;
 	}
 	
+	/**
+	 * @param topicNames a string array of names of topics that the user wants
+	 * @return an array of Topic classes corresponding to the topicNames given
+	 */
 	public Topic[] getTopic(String...topicNames) {
 		Topic[] topics = new Topic[topicNames.length];
 		for (int i = 0; i < topics.length; i++)
@@ -61,9 +75,18 @@ public class QuestionList {
 		return getTopic(allTopicNames().toArray(new String[0]));
 	}
 	
+	/**
+	 * Loads a json file into the QuestionList class 
+	 * @param jsonFilepath is the path to the json file to be loaded
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 * @throws ParseException
+	 */
 	public void Load(String jsonFilepath) throws FileNotFoundException, IOException, ParseException {
 		JSONObject jo = (JSONObject) new JSONParser().parse(new FileReader(jsonFilepath));
+		// All proper jsons should have a questionArray 
 		JSONArray ja = (JSONArray) jo.get("questionArray");
+		// Loop through the array and extract the question information
 		for (Object q : ja) {
 			JSONObject jq = (JSONObject) q;
 			String metadata = (String) jq.get("meta-data");
@@ -78,11 +101,17 @@ public class QuestionList {
 				Boolean isCorrect = ((String) jans.get("isCorrect")).equals("T") ? true : false;
 				answers.put(choice, isCorrect);
 			}
+			// Once all info has been extracted for the question, add it to the QuestionList
 			this.addQuestion(new Question(topic,question,answers,image,metadata));
 		}
 	}
 	
-	public void Save(String fname) {
+	/**
+	 * Saves the current QuestionList to a json file
+	 * @param fname is the name of the json file to be created
+	 * @throws IOException 
+	 */
+	public void Save(String fname) throws IOException {
 		JSONObject jo = new JSONObject();
 		JSONArray ja = new JSONArray();
 		for (String topicName : topicList.keySet()) {
@@ -109,12 +138,8 @@ public class QuestionList {
 		}
 		jo.put("questionArray", ja);
 		
-		try {
-			FileWriter file = new FileWriter(fname);
-			file.write(jo.toJSONString());
-			file.flush();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		FileWriter file = new FileWriter(fname);
+		file.write(jo.toJSONString());
+		file.flush();
 	}
 }

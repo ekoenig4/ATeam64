@@ -1,5 +1,7 @@
 package application;
 
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -46,15 +48,28 @@ public class SaveAndQuitWindow implements Window{
     fileBox.setPrefHeight(10);
     fileBox.getChildren().add(loadDesc);
     root.getChildren().add(fileBox);
+    // box to hold any error messages while saving
+    VBox saveBox = new VBox(20);
     Button saveButton = new Button("Save and Quit");
+    Label msg = new Label();
     // save questions under filename
     saveButton.setOnAction(new EventHandler<ActionEvent>() {
         @Override public void handle(ActionEvent t) { 
-          Main.questionList.Save(filename.getText().concat(".json"));
-          stage.close();
+        	if (Main.questionList.getNumOfQuestions() == 0) {
+        		msg.setText("No questions to save");
+        		return;
+        	}
+          try {
+						Main.questionList.Save(filename.getText().concat(".json"));
+	          stage.close();
+					} catch (IOException e) {
+						msg.setText("Unable to save to file: "+filename.getText().concat(".json"));
+					}
         }
     });
-    fileBox.getChildren().add(saveButton);
+    saveBox.getChildren().add(saveButton);
+    saveBox.getChildren().add(msg);
+    fileBox.getChildren().add(saveBox);
     root.getChildren().add(new SwapScreen("Back",Main.windows[4],stage));
     return scene;
   }
