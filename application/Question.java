@@ -11,6 +11,9 @@ import java.util.HashMap;
 
 import javafx.scene.image.Image;
 
+/**
+ * This class holds all the information for a specific question
+ */
 public class Question {
   private String topic;
   private String question;
@@ -19,6 +22,12 @@ public class Question {
   private HashMap<String,Boolean> answers;
   private String metaData;
  
+  /**
+   * Create a question without an image
+   * @param topic is the topic of the question
+   * @param question is the question's text
+   * @param answers is a HashMap of answers
+   */
   public Question(String topic, String question, HashMap<String,Boolean> answers) {
     this.topic = topic;
     this.question = question;
@@ -26,24 +35,23 @@ public class Question {
     pic = null;
   }
   
-  public Question(String topic, String question, 
-  		HashMap<String,Boolean> answers ,String imageFileName) {
-    this.topic = topic;
-    this.question = question;
-    this.answers = answers;
-    this.imageFileName = imageFileName;
-    this.pic = new Image(imageFileName);
-  }
-  
+  /**
+   * Create a question with an image
+   * @param topic is the topic of the question
+   * @param question is the question's text
+   * @param answers is a HashMap of answers
+   * @param imageFileName is the path to the image
+   * @param metaData
+   */
   public Question(String topic, String question, HashMap<String,Boolean> answers, 
       String imageFileName, String metaData) {
     this.topic = topic;
     this.question = question;
     this.answers = answers;
     this.imageFileName = imageFileName;
-    try {
+    try { // Try to load the image
     this.pic = !this.imageFileName.equals("none") ? new Image(imageFileName) : null;
-    } catch(IllegalArgumentException e) {
+    } catch(IllegalArgumentException e) { // If unable, set pic to null
     	this.pic = null;
     }
     this.metaData = metaData;
