@@ -37,21 +37,32 @@ public class CreateQuiz implements Window {
   private int nQuestions;
   private List<Question> quiz;
 
+  /**
+   * Constructor that initializes the stage field to the passed in parameter and creates initializes
+   * quizTopics and quiz.
+   * 
+   * @param stage The stage to initialize this.stage to
+   */
   public CreateQuiz(Stage stage) {
     this.stage = stage;
     quizTopics = new ArrayList<String>();
     quiz = new ArrayList<Question>();
-    // setFieldsForTesting();
   }
 
+  /**
+   * This method does all the display of the window's functions and gets user input. Other methods
+   * use the input stored from this class to create a quiz.
+   * 
+   * @see application.Window#getScene()
+   */
   @Override
   public Scene getScene() {
     VBox root = new VBox(20);
     root.setPadding(new Insets(10, 25, 25, 25));
     root.setSpacing(10);
     Scene scene = new Scene(root, 800, 600);
-    quizTopics = new ArrayList<String>();
-    quiz = new ArrayList<Question>();
+    quizTopics = new ArrayList<String>(); // used to make a new empty list
+    quiz = new ArrayList<Question>(); // makes new empty list
     // HEADER
     Label quizHeader = new Label("Create Quiz");
     quizHeader.setFont(Config.SIZE24);
@@ -102,17 +113,23 @@ public class CreateQuiz implements Window {
       public void handle(ActionEvent t) { // only makes quiz if given valid input
         if (quizTopics.size() > 0 && isInteger(numQsTA.getText())) {
           nQuestions = Integer.parseInt(numQsTA.getText());
-          if (nQuestions > 0) // there must be a non-zero number of questions
+          if (nQuestions > 0) // there must be a non-zero number of questions to make a quiz
             makeQuiz();
         }
       }
     });
     buttons.getChildren().add(genQuiz);
-
     root.getChildren().add(buttons);
     return scene;
   }
 
+  /**
+   * This method checks if the data inputed into the number of questions box is an integer before
+   * trying to make a quiz using it.
+   * 
+   * @param s The string to parse
+   * @return True if it is an integer, false otherwise
+   */
   private boolean isInteger(String s) {
     try {
       Integer.parseInt(s);
@@ -122,10 +139,24 @@ public class CreateQuiz implements Window {
     return true;
   }
 
+  /**
+   * Setter for setting the private field quizTopics
+   * 
+   * @param topicList The list to update quizTopics to
+   */
   public void setQuizTopics(ArrayList<String> topicList) {
     this.quizTopics = topicList;
   }
 
+  /**
+   * Method to make a quiz with the given input. Gets the questions from each topic and adds them to
+   * a list. This question collection is then mapped to a stream and the collected into a list. It
+   * keeps a barrier on the number of questions so if the user asks for more questions than
+   * available, the method modifies the number and only gives the max number of questions available.
+   * The list is then matched with a generated list of random numbers and the respective questions
+   * are taken from the list to be used in the quiz. After this has all been done, a new Quiz screen
+   * is created for the user to take a quiz.
+   */
   public void makeQuiz() {
     ArrayList<ArrayList<Question>> allQuestionLists = new ArrayList<ArrayList<Question>>();
     // Get list of topics from question list
