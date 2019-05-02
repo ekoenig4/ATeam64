@@ -26,7 +26,7 @@ public class SaveAndQuitWindow implements Window{
 
 	@Override
 	public Scene getScene() {
-		VBox root = new VBox(20);
+		VBox root = new VBox(20); // main node, houses all other nodes
 		root.setPadding(new Insets(10, 25, 25, 25));
 		root.setSpacing(10);
 		Scene scene = new Scene(root, 800, 600);
@@ -38,20 +38,18 @@ public class SaveAndQuitWindow implements Window{
 		Label extension = new Label(".json");
 		extension.setFont(Config.SIZE14);
 		// LOAD QUESTION FILE
-		HBox fileBox = new HBox(20);
-		Label fileLabel = new Label("Filename:");
-		fileLabel.setFont(Config.SIZE14);
+		HBox fileBox = new HBox(20); 
+		Label fileLabel = new Label("Filename:"); // prompt for filename
+		fileLabel.setFont(Config.SIZE14); 
 		fileBox.getChildren().add(fileLabel);
-		TextArea filename = new TextArea();
-		filename.setPrefWidth(250);
+		TextArea filename = new TextArea(); // where the user can enter the filename
+		filename.setPrefHeight(10);
 		fileBox.getChildren().add(filename);
 		fileBox.setPrefHeight(10);
 		fileBox.getChildren().add(extension);
-		root.getChildren().add(fileBox);
-
-		// box to hold any error messages while saving
-		VBox saveBox = new VBox(20);
 		Button saveButton = new Button("Save and Quit");
+		fileBox.getChildren().add(saveButton);
+		root.getChildren().add(fileBox);
 		Label msg = new Label();
 		// save questions under filename
 		saveButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -70,10 +68,8 @@ public class SaveAndQuitWindow implements Window{
 				}
 			}
 		});
-		saveBox.getChildren().add(saveButton);
-		saveBox.getChildren().add(msg);
-		fileBox.getChildren().add(saveBox);
 		root.getChildren().add(new SwapScreen("Back",Main.windows[4],stage));
+        root.getChildren().add(msg);
 		return scene;
 	}
 }
