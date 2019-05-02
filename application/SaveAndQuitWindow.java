@@ -26,11 +26,6 @@ public class SaveAndQuitWindow implements Window {
 
   @Override
   public Scene getScene() {
-    VBox root = new VBox(20); // main node, houses all other nodes
-    root.setPadding(new Insets(10, 25, 25, 25));
-    root.setSpacing(10);
-    Scene scene = new Scene(root, 800, 600);
-
     Label saveHeader = new Label("Enter File Name"); // prompt
     saveHeader.setFont(Config.SIZE24);
 
@@ -70,11 +65,15 @@ public class SaveAndQuitWindow implements Window {
     fileBox.getChildren().add(extension);
     fileBox.getChildren().add(saveButton);
 
+    VBox root = new VBox(20); // main node, houses all other nodes
+    root.setPadding(new Insets(10, 25, 25, 25));
+    root.setSpacing(10);
     root.getChildren().add(saveHeader); // get all members of root together
     root.getChildren().add(fileBox); 
     root.getChildren().add(new SwapScreen("Back", Main.windows[4], stage));
     root.getChildren().add(msg);
-
+    
+    Scene scene = new Scene(root, 800, 600);
     return scene;
   }
 }

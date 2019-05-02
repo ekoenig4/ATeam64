@@ -26,11 +26,6 @@ public class SaveWindow implements Window {
 
   @Override
   public Scene getScene() {
-    VBox root = new VBox(20);
-    root.setPadding(new Insets(10, 25, 25, 25));
-    root.setSpacing(10);
-    Scene scene = new Scene(root, 800, 600);
-
     Label enterFileName = new Label("Enter File Name"); // prompt
     enterFileName.setFont(Config.SIZE24);
 
@@ -70,11 +65,15 @@ public class SaveWindow implements Window {
     fileBox.getChildren().add(extension);
     fileBox.getChildren().add(saveButton);
 
+    VBox root = new VBox(20);
+    root.setPadding(new Insets(10, 25, 25, 25));
+    root.setSpacing(10);
     root.getChildren().add(enterFileName); // get all members of root together
     root.getChildren().add(fileBox);
     root.getChildren().add(new SwapScreen("Back", Main.windows[0], stage));
     root.getChildren().add(msg);
 
+    Scene scene = new Scene(root, 800, 600);
     return scene;
   }
 }
