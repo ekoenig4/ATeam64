@@ -30,45 +30,51 @@ public class SaveAndQuitWindow implements Window{
 		root.setPadding(new Insets(10, 25, 25, 25));
 		root.setSpacing(10);
 		Scene scene = new Scene(root, 800, 600);
-		// PROMPT
-		Label saveHeader = new Label("Enter File Name");
+		
+		Label saveHeader = new Label("Enter File Name"); // prompt
 		saveHeader.setFont(Config.SIZE24);
 		root.getChildren().add(saveHeader);
-		// FILE EXTENSION -- so user knows not to enter ".json"
-		Label extension = new Label(".json");
+		
+		Label extension = new Label(".json"); // file extension so user knows not to enter ".json"
 		extension.setFont(Config.SIZE14);
-		// LOAD QUESTION FILE
-		HBox fileBox = new HBox(20); 
+		
 		Label fileLabel = new Label("Filename:"); // prompt for filename
-		fileLabel.setFont(Config.SIZE14); 
-		fileBox.getChildren().add(fileLabel);
+		fileLabel.setFont(Config.SIZE14);
+		
 		TextArea filename = new TextArea(); // where the user can enter the filename
 		filename.setPrefHeight(10);
+		
+		Label msg = new Label(); // where an error message will go
+		
+		Button saveButton = new Button("Save and Quit");
+        saveButton.setOnAction(new EventHandler<ActionEvent>() { // set saveButton's behavior
+            @Override 
+            public void handle(ActionEvent t) { 
+                if (filename.getText().isEmpty()) // do not allow empty file name
+                    msg.setText("Please enter a file name.");
+                else if (Main.questionList.getNumOfQuestions() == 0) // this shouldn't be reached
+                    msg.setText("No questions to save");
+                else { // try to save the questions under given file name
+                    try {
+                        Main.questionList.Save(filename.getText().concat(".json"));
+                        stage.close();
+                    } catch (IOException e) {
+                        msg.setText("Unable to save to file: "+filename.getText().concat(".json"));
+                    }
+                }
+            }
+        });
+		
+        HBox fileBox = new HBox(20); // get all members of fileBox together
+		fileBox.getChildren().add(fileLabel);
 		fileBox.getChildren().add(filename);
 		fileBox.getChildren().add(extension);
-		Button saveButton = new Button("Save and Quit");
 		fileBox.getChildren().add(saveButton);
-		root.getChildren().add(fileBox);
-		Label msg = new Label();
-		// save questions under filename
-		saveButton.setOnAction(new EventHandler<ActionEvent>() {
-			@Override public void handle(ActionEvent t) { 
-				if (filename.getText().isEmpty())
-					msg.setText("Please enter a file name.");
-				else if (Main.questionList.getNumOfQuestions() == 0)
-					msg.setText("No questions to save");
-				else {
-					try {
-						Main.questionList.Save(filename.getText().concat(".json"));
-						stage.close();
-					} catch (IOException e) {
-						msg.setText("Unable to save to file: "+filename.getText().concat(".json"));
-					}
-				}
-			}
-		});
+		
+		root.getChildren().add(fileBox); // get all members of root together
 		root.getChildren().add(new SwapScreen("Back",Main.windows[4],stage));
         root.getChildren().add(msg);
+        
 		return scene;
 	}
 }
