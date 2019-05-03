@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -54,6 +55,7 @@ public class Home implements Window {
     root.setAlignment(Pos.CENTER);
     Insets border = new Insets(10);
     Scene scene = new Scene(root, 800, 600);
+    root.setBackground(new Background(new BackgroundFill(Color.SKYBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
     // The header that displays number of current questions
     Label currentNum = new Label(
         "Currently you have " + Main.questionList.getNumOfQuestions() + " question(s) loaded");

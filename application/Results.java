@@ -12,7 +12,11 @@ package application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
@@ -52,6 +56,7 @@ public class Results implements Window {
     // initialize window
     VBox root = new VBox(20);
     root.setPadding(new Insets(10, 25, 25, 25));
+    root.setBackground(new Background(new BackgroundFill(Color.SKYBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
     root.setSpacing(10);
     Scene scene = new Scene(root, 800, 600);
     // result header label
