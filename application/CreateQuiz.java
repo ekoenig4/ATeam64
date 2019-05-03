@@ -75,7 +75,7 @@ public class CreateQuiz implements Window {
 		HBox topicHB = new HBox(20);
 		if (Main.topics.contains("Other")) // removes "Other"
 			Main.topics.remove("Other");
-		Main.topics.sorted(); // alphabetize topics
+		Main.topics = Main.topics.sorted(); // alphabetize topics
 		topicHB.getChildren().add(Main.topicBox);
 		// allows user to add multiple topics to the quiz
 		Button addTopic = new Button("Add Topic to Quiz");
