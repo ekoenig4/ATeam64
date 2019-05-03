@@ -54,4 +54,11 @@ public class Topic {
   public ArrayList<Question> getQuestions() {
     return questions;
   }
+  
+  public Boolean hasQuestion(Question question) {
+  	for (Question q : questions)
+  		if (q.getQuestion().equals(question.getQuestion()))
+  			return true;
+  	return false;
+  }
 }

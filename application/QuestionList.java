@@ -58,14 +58,16 @@ public class QuestionList {
 	public void addQuestion(Question question) {
 		this.addTopic(question.getTopic());
 		Topic topic = topicList.get(question.getTopic());
-		topic.addQuestion(question);	
-		++numberOfQuestions;
+		if (!topic.hasQuestion(question)) {
+			topic.addQuestion(question);	
+			++numberOfQuestions;
+		}
 	}
-	
+
 	public int getNumOfQuestions() {
-	  return numberOfQuestions;
+		return numberOfQuestions;
 	}
-	
+
 	/**
 	 * @param topicNames a string array of names of topics that the user wants
 	 * @return an array of Topic classes corresponding to the topicNames given
@@ -76,14 +78,14 @@ public class QuestionList {
 			topics[i] = topicList.get(topicNames[i]);
 		return topics;
 	}
-	
+
 	public ObservableList<String> getAllTopicNames() {
 		Set<String> key = topicList.keySet();
 		List<String> keylist = new ArrayList<>(key);
 		Collections.sort(keylist);
 		return FXCollections.observableArrayList(keylist);
 	}
-	
+
 	/**
 	 * Loads a json file into the QuestionList class 
 	 * @param jsonFilepath is the path to the json file to be loaded
@@ -114,7 +116,7 @@ public class QuestionList {
 			this.addQuestion(new Question(topic,question,answers,image,metadata));
 		}
 	}
-	
+
 	/**
 	 * Saves the current QuestionList to a json file
 	 * @param fname is the name of the json file to be created
@@ -147,7 +149,7 @@ public class QuestionList {
 			}
 		}
 		jo.put("questionArray", ja);
-		
+
 		FileWriter file = new FileWriter(fname);
 		file.write(jo.toJSONString());
 		file.flush();
