@@ -116,7 +116,7 @@ public class removeQuestion implements Window {
 					if (incorrectAnswers.contains(ans))
 						error.setText("No duplicate answers");
 					else {
-						answerMap.put(ans, false);
+//						answerMap.put(ans, false);
 						incorrectAnswers.add(ans);
 						incorrect.clear();
 						String prompt = "Incorrect Answers: ";
@@ -135,7 +135,7 @@ public class removeQuestion implements Window {
 			@Override
 			public void handle(ActionEvent t) {
 				if (!incorrect.getText().replaceAll("\\s+", "").equals("")) {
-					answerMap.remove(incorrect.getText().trim());
+//					answerMap.remove(incorrect.getText().trim());
 					incorrectAnswers.remove(incorrect.getText().trim());
 					incorrect.clear();
 					String prompt = "Incorrect Answers: ";
@@ -178,12 +178,12 @@ public class removeQuestion implements Window {
 						error.setText("Please enter a question");
 					else if (correctT.getText().trim().equals(""))
 						error.setText("Please enter a correct answer");
-					else if (answerMap.size() == 0)
-						error.setText("Please enter at least 1 incorrect answer");
+//					else if (answerMap.size() == 0)
+//						error.setText("Please enter at least 1 incorrect answer");
 					else {
-						answerMap.put(correctT.getText().trim(), true);
-						Question newQuestion = new Question(questionTopic, question.getText().trim(), answerMap);
-						Main.questionList.addQuestion(newQuestion);
+//						answerMap.put(correctT.getText().trim(), true);
+//						Question newQuestion = new Question(questionTopic, question.getText().trim(), answerMap);
+//						Main.questionList.addQuestion(newQuestion);
 						stage.setScene(Main.windows[0].getScene());
 					}
 				} catch (Exception e) {
