@@ -8,6 +8,7 @@
 //
 package application;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -105,18 +106,22 @@ public class AddQuestion implements Window {
     // max 4
     Button addAns = new Button("Add Incorrect Answer");
     Button removeAns = new Button("Remove Incorrect Answer");
-    Label incorrectAnswers = new Label("Incorrect Answers: ");
+    ArrayList<String> incorrectAnswers = new ArrayList<>();
+    Label incorrectLabel = new Label("Incorrect Answers: ");
     addAns.setOnAction(new EventHandler<ActionEvent>() {
       @Override
       public void handle(ActionEvent t) {
         if (!incorrect.getText().replaceAll("\\s+", "").equals("")) {
           answerMap.put(incorrect.getText(), false);
-          String text = incorrectAnswers.getText();
-          if (text.equals("Incorrect Answers: "))
-            incorrectAnswers.setText(text + incorrect.getText());
-          else
-            incorrectAnswers.setText(text + ", " + incorrect.getText());
+          incorrectAnswers.add(incorrect.getText());
           incorrect.clear();
+          String prompt = "Incorrect Answers: ";
+          for (int i = 0; i < incorrectAnswers.size(); i++)
+          	if (i + 1 == incorrectAnswers.size())
+          		prompt += incorrectAnswers.get(i);
+          	else
+          		prompt += incorrectAnswers.get(i) + ", ";
+        	incorrectLabel.setText(prompt);
         }
       }
     });
@@ -126,10 +131,15 @@ public class AddQuestion implements Window {
       public void handle(ActionEvent t) {
         if (!incorrect.getText().replaceAll("\\s+", "").equals("")) {
           answerMap.remove(incorrect.getText());
-          String text = incorrectAnswers.getText();
-          text = text.replace(incorrect.getText() + ", ", "");
-          incorrectAnswers.setText(text);
+          incorrectAnswers.remove(incorrect.getText());
           incorrect.clear();
+          String prompt = "Incorrect Answers: ";
+          for (int i = 0; i < incorrectAnswers.size(); i++)
+          	if (i + 1 == incorrectAnswers.size())
+          		prompt += incorrectAnswers.get(i);
+          	else
+          		prompt += incorrectAnswers.get(i) + ", "; 
+        	incorrectLabel.setText(prompt);
         }
       }
     });
@@ -138,7 +148,8 @@ public class AddQuestion implements Window {
     incorrectTVB.getChildren().add(incorrectButtons);
     incorrectButtons.getChildren().add(addAns);
     incorrectButtons.getChildren().add(removeAns);
-    incorrectTVB.getChildren().add(incorrectAnswers);
+    
+    incorrectTVB.getChildren().add(incorrectLabel);
     incorrectBox.getChildren().add(incorrectL);
     incorrectBox.getChildren().add(incorrectTVB);
     root.getChildren().add(incorrectBox);

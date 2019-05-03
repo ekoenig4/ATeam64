@@ -57,25 +57,24 @@ public class LoadQuestion implements Window{
 		fileBox.getChildren().add(loadDesc);
 		root.getChildren().add(fileBox);
 		Button loadButton = new Button("Load");
+		Label msg = new Label();
 		// Attempting to load the entered filename
 		loadButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override public void handle(ActionEvent t) {
-				Label msg;
 				try {
 					String fn = filename.getText();
 					if (!fn.endsWith(".json"))
 						fn += ".json";
 					Main.questionList.Load(fn);
-					msg = new Label(fn+" successfully loaded!");
+					msg.setText(fn+" successfully loaded!");
 				} catch(Exception e) {
-					msg = new Label("Please enter a valid filename");
+					msg.setText("Please enter a valid filename");
 				}
-				if(!root.getChildren().contains(msg))
-					root.getChildren().add(msg);
 			}
 		});
 		fileBox.getChildren().add(loadButton);
 		root.getChildren().add(new SwapScreen("Back",Main.windows[0],stage));
+		root.getChildren().add(msg);
 		return scene;
 	}
 
