@@ -36,9 +36,9 @@ public class Main extends Application {
   
   @Override
   public void start(Stage primaryStage) {
-    windows = new Window[] {new Home(primaryStage), new AddQuestion(primaryStage),
-        new LoadQuestion(primaryStage), 
-        new CreateQuiz(primaryStage), new QuitWindow(primaryStage), 
+    windows = new Window[] {new HomeWindow(primaryStage), new AddQuestionWindow(primaryStage),
+        new LoadQuestionWindow(primaryStage), 
+        new CreateQuizWindow(primaryStage), new QuitWindow(primaryStage), 
         new SaveAndQuitWindow(primaryStage), new SaveWindow(primaryStage)};
     
     questionList = new QuestionList();

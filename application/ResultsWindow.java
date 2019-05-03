@@ -24,7 +24,7 @@ import javafx.stage.Stage;
  * number of correct questions, and the total number of questions. The user then has the option to
  * go back to the Home page where they can create a new quiz, add/load questions, save, or quit.
  */
-public class Results implements Window {
+public class ResultsWindow implements Window {
   private Stage stage;
   private int numCorrect; // the number of correct answers from the quiz
   private int numQuestions; // the total number of questions from the quiz
@@ -37,7 +37,7 @@ public class Results implements Window {
    * @param numCorrect The user's number of correct answers
    * @param numQuestions The total number of questions for the current quiz
    */
-  public Results(Stage stage, int numCorrect, int numQuestions) {
+  public ResultsWindow(Stage stage, int numCorrect, int numQuestions) {
     this.stage = stage;
     this.numCorrect = numCorrect;
     this.numQuestions = numQuestions;
@@ -56,7 +56,7 @@ public class Results implements Window {
     // initialize window
     VBox root = new VBox(20);
     root.setPadding(new Insets(10, 25, 25, 25));
-    root.setBackground(new Background(new BackgroundFill(Color.SKYBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+    root.setBackground(Config.GRADIENT);
     root.setSpacing(10);
     Scene scene = new Scene(root, 800, 600);
     // result header label

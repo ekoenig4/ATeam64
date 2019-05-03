@@ -37,7 +37,7 @@ import javafx.stage.Stage;
  * from. The user can add multiple topics to a quiz. The user then types how many questions they
  * want in the quiz.
  */
-public class CreateQuiz implements Window {
+public class CreateQuizWindow implements Window {
 	private Stage stage;
 	private ArrayList<String> quizTopics;
 	private int nQuestions;
@@ -49,7 +49,7 @@ public class CreateQuiz implements Window {
 	 * 
 	 * @param stage The stage to initialize this.stage to
 	 */
-	public CreateQuiz(Stage stage) {
+	public CreateQuizWindow(Stage stage) {
 		this.stage = stage;
 		quizTopics = new ArrayList<String>();
 		quiz = new ArrayList<Question>();
@@ -65,7 +65,7 @@ public class CreateQuiz implements Window {
 	public Scene getScene() {
 		VBox root = new VBox(20);
 		root.setPadding(new Insets(10, 25, 25, 25));
-		root.setBackground(new Background(new BackgroundFill(Color.SKYBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+		root.setBackground(Config.GRADIENT);
 		root.setSpacing(10);
 		Scene scene = new Scene(root, 800, 600);
 		quizTopics = new ArrayList<String>(); // used to make a new empty list
@@ -221,7 +221,7 @@ public class CreateQuiz implements Window {
 				.collect(Collectors.toList()); // collects questions in a list
 		this.quiz = quizQuestions;
 
-		Window takeQuiz = new Quiz(stage, this.quiz);
+		Window takeQuiz = new QuizWindow(stage, this.quiz);
 		stage.setScene(takeQuiz.getScene());
 	}
 }

@@ -42,15 +42,12 @@ public class QuitWindow implements Window {
         stage.close();
       }
     });
-
-    BackgroundFill grey = new BackgroundFill(Color.DARKGRAY, null, null); // dark grey background 
-    Background disable = new Background(grey);                            // for disabled button
     
     SwapScreen saveAndQuit = new SwapScreen("Save and Quit", Main.windows[5], stage);
     saveAndQuit.setPrefSize(150, 75);
     saveAndQuit.setFont(Config.SIZE14);
     if (Main.questionList.getNumOfQuestions() == 0) { // disable this button if no questions
-      saveAndQuit.setBackground(disable);
+      saveAndQuit.setBackground(Config.DISABLED_BUTTON);
       saveAndQuit.setOnAction(null);
     }
 
@@ -68,7 +65,7 @@ public class QuitWindow implements Window {
     root.setAlignment(Pos.CENTER);
     root.getChildren().add(sure);
     root.getChildren().add(options);
-    root.setBackground(new Background(new BackgroundFill(Color.SKYBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+    root.setBackground(Config.GRADIENT);
     
     Scene scene = new Scene(root, 800, 600);
     return scene;

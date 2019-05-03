@@ -28,13 +28,13 @@ import javafx.stage.Stage;
 /**
  * 
  */
-public class Quiz implements Window {
+public class QuizWindow implements Window {
   private Stage stage;
   private List<Question> questions;
   private int numCorrectAnswers;
   private int questionNumber;
 
-  public Quiz(Stage stage, List<Question> questions) {
+  public QuizWindow(Stage stage, List<Question> questions) {
     this.stage = stage;
     this.questions = questions;
     this.numCorrectAnswers = 0;
@@ -48,7 +48,7 @@ public class Quiz implements Window {
     questionNumber++;
     VBox root = new VBox(20);
     root.setPadding(new Insets(10, 25, 25, 25));
-    root.setBackground(new Background(new BackgroundFill(Color.SKYBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+    root.setBackground(Config.GRADIENT);
     root.setSpacing(10);
     Scene scene = new Scene(root, 800, 600);
     // Set Header with question number
@@ -142,7 +142,7 @@ public class Quiz implements Window {
       } else {
         // THIS IS WHERE THE RESULT SCREEN SHOULD GO
         SwapScreen resultB = new SwapScreen("See Results",
-            new Results(stage, this.numCorrectAnswers, this.questionNumber), stage);
+            new ResultsWindow(stage, this.numCorrectAnswers, this.questionNumber), stage);
         root.getChildren().add(resultB);
 
       }

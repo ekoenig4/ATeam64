@@ -26,3 +26,17 @@
 /SwapScreen.class
 /Topic.class
 /Window.class
+/AddQuestionWindow$1.class
+/AddQuestionWindow$2.class
+/AddQuestionWindow$3.class
+/AddQuestionWindow.class
+/CreateQuizWindow$1.class
+/CreateQuizWindow$2.class
+/CreateQuizWindow$3.class
+/CreateQuizWindow.class
+/HomeWindow.class
+/LoadQuestionWindow$1.class
+/LoadQuestionWindow.class
+/QuizWindow$1.class
+/QuizWindow.class
+/ResultsWindow.class

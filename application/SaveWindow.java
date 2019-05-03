@@ -76,7 +76,7 @@ public class SaveWindow implements Window {
     root.getChildren().add(fileBox);
     root.getChildren().add(new SwapScreen("Back", Main.windows[0], stage));
     root.getChildren().add(msg);
-    root.setBackground(new Background(new BackgroundFill(Color.SKYBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+    root.setBackground(Config.GRADIENT);
 
     Scene scene = new Scene(root, 800, 600);
     return scene;

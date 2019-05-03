@@ -26,14 +26,14 @@ import javafx.stage.Stage;
  * A place where questions can be loaded in from a file
  *
  */
-public class LoadQuestion implements Window{
+public class LoadQuestionWindow implements Window{
 	private Stage stage;
 	
 	/**
 	 * Constructor, sets current stage
 	 * @param stage
 	 */
-	public LoadQuestion(Stage stage) {
+	public LoadQuestionWindow(Stage stage) {
 		this.stage = stage;
 	}
 
@@ -41,7 +41,7 @@ public class LoadQuestion implements Window{
 	public Scene getScene() {
 		VBox root = new VBox(20);
 	    root.setPadding(new Insets(10, 25, 25, 25));
-	    root.setBackground(new Background(new BackgroundFill(Color.SKYBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+	    root.setBackground(Config.GRADIENT);
 	    root.setSpacing(10);
 	    Scene scene = new Scene(root, 800, 600);
 	    // HEADER

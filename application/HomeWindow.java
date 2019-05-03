@@ -28,7 +28,7 @@ import javafx.stage.Stage;
  * buttons, a "Generate Quiz" button is also available. Below these buttons are buttons that allow
  * the user the save their current questions to a file or to exit the program.
  */
-public class Home implements Window {
+public class HomeWindow implements Window {
   private Stage stage;
 
   /**
@@ -36,7 +36,7 @@ public class Home implements Window {
    * 
    * @param stage
    */
-  public Home(Stage stage) {
+  public HomeWindow(Stage stage) {
     this.stage = stage;
   }
 
@@ -55,7 +55,7 @@ public class Home implements Window {
     VBox root = new VBox(50);
     root.setAlignment(Pos.CENTER);
     Scene scene = new Scene(root, 800, 600);
-    root.setBackground(new Background(new BackgroundFill(Color.SKYBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+    root.setBackground(Config.GRADIENT);
     // Title for the home page
     Label title = new Label("Quiz Generator");
     title.setFont(Config.TITLE);
@@ -77,15 +77,12 @@ public class Home implements Window {
     SwapScreen LoadQButton = new SwapScreen("Load Questions", Main.windows[2], stage);
     LoadQButton.setPrefSize(200, 100);
     LoadQButton.setFont(Config.SIZE14);
-    // dark grey background for disabled buttons
-    BackgroundFill grey = new BackgroundFill(Color.DARKGRAY,null,null);
-    Background disable = new Background(grey); 
     // creates "Take Quiz" button for the screen
     SwapScreen TakeQButton = new SwapScreen("Take a Quiz", Main.windows[3], stage);
     TakeQButton.setPrefSize(200, 100);
     TakeQButton.setFont(Config.SIZE14);
     if(Main.questionList.getNumOfQuestions() == 0) {
-      TakeQButton.setBackground(disable);
+      TakeQButton.setBackground(Config.DISABLED_BUTTON);
       TakeQButton.setOnAction(null);
     }
     buttons.setAlignment(Pos.CENTER);
@@ -100,7 +97,7 @@ public class Home implements Window {
     saveButton.setPrefSize(100, 50);
     saveButton.setFont(Config.SIZE14);
     if(Main.questionList.getNumOfQuestions() == 0) {
-      saveButton.setBackground(disable);
+      saveButton.setBackground(Config.DISABLED_BUTTON);
       saveButton.setOnAction(null);
     }
     // add save and quit in same HBox
