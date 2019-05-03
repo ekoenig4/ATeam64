@@ -10,11 +10,14 @@ package application;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Background;
@@ -64,12 +67,16 @@ public class AddQuestion implements Window {
 		root.getChildren().add(addQHeader);
 		// Topic HBox holds topic box selection and text area for adding new topics
 		HBox topicHB = new HBox(20);
-		// alphabetize topic list
-		if (Main.topics.contains("Other")) // removes "Other" before alphabetizing
-			Main.topics.remove("Other");
-		Main.topics.sorted(); // alphabetize
-		Main.topics.add("Other"); // re-add "Other" to be at end of list
-		topicHB.getChildren().add(Main.topicBox);
+		
+		HBox topicBox = new HBox(20); // HBox to display the topic label and combobox
+    Label topicPrompt = new Label("Topic:");
+    topicPrompt.setFont(Config.SIZE14);
+    topicBox.getChildren().add(topicPrompt);
+    ObservableList<String> topics = Main.questionList.getAllTopicNames();
+    topics.add("Other"); // add "Other" to be at end of list
+    ComboBox<String> topic = new ComboBox<String>(topics);
+    topicBox.getChildren().add(topic);
+		topicHB.getChildren().add(topicBox);
 		VBox otherTopicVB = new VBox(10); // groups other topic label with textbox
 		// prompt and text area for a new topic
 		Label otherPrompt =
@@ -172,8 +179,8 @@ public class AddQuestion implements Window {
 			public void handle(ActionEvent t) {
 				String questionTopic;
 				try {
-					if (!Main.topic.getValue().equals("Other")) // if the user has selected a topic
-						questionTopic = Main.topic.getValue();
+					if (!topic.getValue().equals("Other")) // if the user has selected a topic
+						questionTopic = topic.getValue();
 					else { // the user has put in a new topic
 						questionTopic = otherText.getText().trim();
 					}

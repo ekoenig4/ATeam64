@@ -13,11 +13,14 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
+
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Background;
@@ -73,10 +76,13 @@ public class CreateQuiz implements Window {
 		root.getChildren().add(quizHeader);
 		// TOPIC SELECTION
 		HBox topicHB = new HBox(20);
-		if (Main.topics.contains("Other")) // removes "Other"
-			Main.topics.remove("Other");
-		Main.topics = Main.topics.sorted(); // alphabetize topics
-		topicHB.getChildren().add(Main.topicBox);
+    HBox topicBox = new HBox(20); // HBox to display the topic label and combobox
+    Label topicPrompt = new Label("Topic:");
+    topicPrompt.setFont(Config.SIZE14);
+    topicBox.getChildren().add(topicPrompt);
+    ComboBox<String> topic = new ComboBox<String>(Main.questionList.getAllTopicNames());
+    topicBox.getChildren().add(topic);
+		topicHB.getChildren().add(topicBox);
 		// allows user to add multiple topics to the quiz
 		Button addTopic = new Button("Add Topic to Quiz");
 		Label topicsAdded = new Label("Topics currently added: ");
@@ -86,12 +92,12 @@ public class CreateQuiz implements Window {
 			@Override
 			public void handle(ActionEvent t) {
 				// can add any topic that is not already added
-				if (Main.topic.getValue() == null)
+				if (topic.getValue() == null)
 					msg.setText("No topics to add");
-				else if (quizTopics.contains(Main.topic.getValue()))
+				else if (quizTopics.contains(topic.getValue()))
 					msg.setText("Topic already added");
 				else {
-					String addedTopic = Main.topic.getValue(); // stores the topic name that was selected
+					String addedTopic = topic.getValue(); // stores the topic name that was selected
 					quizTopics.add(addedTopic); // add topic to list of topics to quiz
 					String prompt = "Topics currently added: ";
 					for (int i = 0; i < quizTopics.size(); i++)
@@ -109,12 +115,12 @@ public class CreateQuiz implements Window {
 			@Override
 			public void handle(ActionEvent t) {
 				// can add any topic that is not already added
-				if (Main.topic.getValue() == null)
+				if (topic.getValue() == null)
 					msg.setText("No topics to remove");
-				else if (!quizTopics.contains(Main.topic.getValue()))
+				else if (!quizTopics.contains(topic.getValue()))
 					msg.setText("Topic not yet added");
 				else {
-					String addedTopic = Main.topic.getValue(); // stores the topic name that was selected
+					String addedTopic = topic.getValue(); // stores the topic name that was selected
 					quizTopics.remove(addedTopic); // add topic to list of topics to quiz
 					String prompt = "Topics currently added: ";
 					for (int i = 0; i < quizTopics.size(); i++)

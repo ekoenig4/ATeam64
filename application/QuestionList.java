@@ -11,13 +11,21 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  * This class holds a HashMap of topics
@@ -67,6 +75,13 @@ public class QuestionList {
 		for (int i = 0; i < topics.length; i++)
 			topics[i] = topicList.get(topicNames[i]);
 		return topics;
+	}
+	
+	public ObservableList<String> getAllTopicNames() {
+		Set<String> key = topicList.keySet();
+		List<String> keylist = new ArrayList<>(key);
+		Collections.sort(keylist);
+		return FXCollections.observableArrayList(keylist);
 	}
 	
 	/**

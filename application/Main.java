@@ -31,9 +31,6 @@ public class Main extends Application {
   // 3: CreateQuiz
   // 4: QuitWindow
   // 5: SaveAndQuitWindow
-  public static HBox topicBox; // HBox to display the topic label and combobox 
-  public static ObservableList<String> topics; // list of topics to display
-  public static ComboBox<String> topic; // the ComboBox that shows all the topics
   public static QuestionList questionList; // stores all topics, which themselves store questions
 
   
@@ -44,14 +41,6 @@ public class Main extends Application {
         new CreateQuiz(primaryStage), new QuitWindow(primaryStage), 
         new SaveAndQuitWindow(primaryStage), new SaveWindow(primaryStage)};
     
-    topics = FXCollections.observableArrayList(); // empty topic list, "Other" is added when used
-
-    topicBox = new HBox(20); // HBox to display the topic label and combobox
-    Label topicPrompt = new Label("Topic:");
-    topicPrompt.setFont(Config.SIZE14);
-    topicBox.getChildren().add(topicPrompt);
-    topic = new ComboBox<String>(topics);
-    topicBox.getChildren().add(topic);
     questionList = new QuestionList();
 
     try {

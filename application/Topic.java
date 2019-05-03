@@ -26,7 +26,6 @@ public class Topic {
   public Topic(String topicName) {
     this.topicName = topicName;
     questions = new ArrayList<>();
-    Main.topics.add(topicName);
   }
 
   /**
