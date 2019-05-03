@@ -45,6 +45,8 @@ public class SaveWindow implements Window {
     Label msg = new Label(); // where an error message will go
 
     Button saveButton = new Button("Save");
+    // NOTE: saving under a filename that already exists will overwrite the old file without
+    //       warning the user. we are aware of this but decided not to implement any restriction.
     saveButton.setOnAction(new EventHandler<ActionEvent>() { // set button's behavior
       @Override
       public void handle(ActionEvent t) {
