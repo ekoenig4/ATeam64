@@ -52,7 +52,7 @@ public class Quiz implements Window {
     root.setSpacing(10);
     Scene scene = new Scene(root, 800, 600);
     // Set Header with question number
-    Label numLabel = new Label("Question Number #" + (this.questionNumber));
+    Label numLabel = new Label("Question Number #" + (this.questionNumber)+" / "+this.questions.size());
     numLabel.setFont(Config.SIZE24);
     root.getChildren().add(numLabel);
     // Give question text
