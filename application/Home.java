@@ -18,6 +18,7 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -51,17 +52,22 @@ public class Home implements Window {
   @Override
   public Scene getScene() {
     // window is a VBox root layout
-    VBox root = new VBox(100);
+    VBox root = new VBox(50);
     root.setAlignment(Pos.CENTER);
-    Insets border = new Insets(10);
     Scene scene = new Scene(root, 800, 600);
     root.setBackground(new Background(new BackgroundFill(Color.SKYBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+    // Title for the home page
+    Label title = new Label("Quiz Generator");
+    title.setFont(Config.TITLE);
+    Paint cyan = Color.DARKCYAN;
+    title.setTextFill(cyan);
+    root.getChildren().add(title);
     // The header that displays number of current questions
     Label currentNum = new Label(
         "Currently you have " + Main.questionList.getNumOfQuestions() + " question(s) loaded");
     currentNum.setFont(Font.font(20));
     root.getChildren().add(currentNum);
-    VBox.setMargin(currentNum, border); // formats question to be in center
+    //VBox.setMargin(currentNum, border); // formats question to be in center
     HBox buttons = new HBox(50); // layout for the buttons
     // creates "Add Questions" button for the screen
     SwapScreen AddQButton = new SwapScreen("Add Questions", Main.windows[1], stage);

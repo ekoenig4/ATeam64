@@ -8,6 +8,7 @@
 package application;
 
 import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 
 /**
@@ -23,5 +24,6 @@ public class Config {
   public static final Font SIZE24 = Font.font(20); // font size of title headers
   public static final Font SIZE14 = Font.font(14); // font size of subheaders
   public static final Font BOLD18 = Font.font("Arial", FontWeight.BOLD, 18); // bold subheader
+  public static final Font TITLE = Font.font("Comic Sans MS", FontWeight.EXTRA_BOLD, FontPosture.ITALIC, 80);
 }
 
