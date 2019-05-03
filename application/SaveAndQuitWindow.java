@@ -8,8 +8,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class SaveAndQuitWindow implements Window {
@@ -72,6 +76,7 @@ public class SaveAndQuitWindow implements Window {
     root.getChildren().add(fileBox); 
     root.getChildren().add(new SwapScreen("Back", Main.windows[4], stage));
     root.getChildren().add(msg);
+    root.setBackground(new Background(new BackgroundFill(Color.SKYBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
     
     Scene scene = new Scene(root, 800, 600);
     return scene;

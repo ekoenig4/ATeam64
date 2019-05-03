@@ -18,6 +18,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -45,6 +48,7 @@ public class Quiz implements Window {
     questionNumber++;
     VBox root = new VBox(20);
     root.setPadding(new Insets(10, 25, 25, 25));
+    root.setBackground(new Background(new BackgroundFill(Color.SKYBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
     root.setSpacing(10);
     Scene scene = new Scene(root, 800, 600);
     // Set Header with question number
