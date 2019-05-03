@@ -48,25 +48,6 @@ public class Topic {
   }
 
   /**
-   * Getter for the number of questions for the topic
-   * 
-   * @return number of questions
-   */
-  public int getNumQuestions() {
-    return questions.size();
-  }
-
-  /**
-   * Checks if a question is in the topic's list of questions
-   * 
-   * @param question Question to find
-   * @return True if found, false otherwise
-   */
-  public boolean contains(Question question) {
-    return questions.contains(question);
-  }
-
-  /**
    * Gets all the questions for the topic
    * 
    * @return An arrayList of questions

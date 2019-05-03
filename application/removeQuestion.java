@@ -22,19 +22,18 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
- * Allows for a question & topic to be added manually. Questions can only be added if "Add question"
+ * Allows for a question & topic to be removed manually. Questions can only be added if "Remove question"
  * at the button of the page was selected.
  */
-public class AddQuestion implements Window {
+public class removeQuestion implements Window {
 	private Stage stage;
-	HashMap<String, Boolean> answerMap = new HashMap<String, Boolean>();
 
 	/**
 	 * Initialize this window's stage
 	 * 
 	 * @param stage
 	 */
-	public AddQuestion(Stage stage) {
+	public removeQuestion(Stage stage) {
 		this.stage = stage;
 	}
 

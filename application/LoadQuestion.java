@@ -62,7 +62,7 @@ public class LoadQuestion implements Window{
 		loadButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override public void handle(ActionEvent t) {
 				try {
-					String fn = filename.getText();
+					String fn = filename.getText().trim();
 					if (!fn.endsWith(".json"))
 						fn += ".json";
 					Main.questionList.Load(fn);

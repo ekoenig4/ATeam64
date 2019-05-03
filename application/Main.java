@@ -58,6 +58,7 @@ public class Main extends Application {
       Scene scene = new Scene(root, 400, 400);
       scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
       primaryStage.setScene(windows[0].getScene()); // set scene to start screen
+      primaryStage.setTitle("Quiz Maker");
       primaryStage.show();
     } catch (Exception e) {
       e.printStackTrace();

@@ -88,15 +88,45 @@ public class CreateQuiz implements Window {
 				else {
 					String addedTopic = Main.topic.getValue(); // stores the topic name that was selected
 					quizTopics.add(addedTopic); // add topic to list of topics to quiz
-					String topicsText = topicsAdded.getText(); // stores previous text to update label
-					if (topicsText.equals("Topics currently added: ")) // does not put a comma if first topic
-						topicsAdded.setText(topicsText + addedTopic);
-					else
-						topicsAdded.setText(topicsText + ", " + addedTopic);
+					String prompt = "Topics currently added: ";
+					for (int i = 0; i < quizTopics.size(); i++)
+						if (i + 1 == quizTopics.size())
+							prompt += quizTopics.get(i);
+						else
+							prompt += quizTopics.get(i) + ", ";
+					topicsAdded.setText(prompt);
 				}
 			}
 		});
-		topicHB.getChildren().add(addTopic);
+		
+		Button removeTopic = new Button("Remove Topic from Quiz");
+		removeTopic.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent t) {
+				// can add any topic that is not already added
+				if (Main.topic.getValue() == null)
+					msg.setText("No topics to remove");
+				else if (!quizTopics.contains(Main.topic.getValue()))
+					msg.setText("Topic not yet added");
+				else {
+					String addedTopic = Main.topic.getValue(); // stores the topic name that was selected
+					quizTopics.remove(addedTopic); // add topic to list of topics to quiz
+					String prompt = "Topics currently added: ";
+					for (int i = 0; i < quizTopics.size(); i++)
+						if (i + 1 == quizTopics.size())
+							prompt += quizTopics.get(i);
+						else
+							prompt += quizTopics.get(i) + ", ";
+					topicsAdded.setText(prompt);
+				}
+			}
+		});
+		
+		VBox topicButtons = new VBox(20);
+		topicButtons.getChildren().add(addTopic);
+		topicButtons.getChildren().add(removeTopic);
+		
+		topicHB.getChildren().add(topicButtons);
 		topicHB.getChildren().add(topicsAdded);
 		root.getChildren().add(topicHB);
 
@@ -118,10 +148,10 @@ public class CreateQuiz implements Window {
 			public void handle(ActionEvent t) { // only makes quiz if given valid input
 					if (quizTopics.size() == 0)
 						msg.setText("Please choose a topic");
-					else if (!isInteger(numQsTA.getText()))
+					else if (!isInteger(numQsTA.getText().trim()))
 						msg.setText("Please entire an integer greater than 0");
 					else {
-						nQuestions = Integer.parseInt(numQsTA.getText());
+						nQuestions = Integer.parseInt(numQsTA.getText().trim());
 						if (nQuestions > 0) // there must be a non-zero number of questions to make a quiz
 							makeQuiz();
 					}
@@ -148,15 +178,6 @@ public class CreateQuiz implements Window {
 			return false;
 		}
 		return true;
-	}
-
-	/**
-	 * Setter for setting the private field quizTopics
-	 * 
-	 * @param topicList The list to update quizTopics to
-	 */
-	public void setQuizTopics(ArrayList<String> topicList) {
-		this.quizTopics = topicList;
 	}
 
 	/**

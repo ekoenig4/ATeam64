@@ -57,11 +57,15 @@ public class Quiz implements Window {
     questionText.setWrapText(true);
     root.getChildren().add(questionText);
     
+    Label imgError = new Label();
     ImageView img = new ImageView();
     if (currentQuestion.getPic() != null)
     	img = new ImageView(currentQuestion.getPic());
+    else if (!currentQuestion.getImageFileName().equals("none"))
+    	imgError.setText("Unable to load image");
   	img.setFitHeight(200);
   	img.setFitWidth(200);
+  	root.getChildren().add(imgError);
   	root.getChildren().add(img);
     // Create VBox to hold all possible answers
     VBox questions = new VBox(10);
@@ -98,9 +102,9 @@ public class Quiz implements Window {
       // disable options
       for (RadioButton current : radioButtons) {
         current.setDisable(true);
-        if (answerMap.get(current.getText())) {// determine whether question is correct or not
+        if (answerMap.get(current.getText().trim())) {// determine whether question is correct or not
           answerIsCorrect = current.isSelected();
-          correctAnswerText = current.getText();
+          correctAnswerText = current.getText().trim();
         }
       }
       // display whether question is correct or not
@@ -145,10 +149,6 @@ public class Quiz implements Window {
     });
 
     return scene;
-  }
-
-  public void setQuiz(List<Question> questions) {
-    this.questions = questions;
   }
 
 }

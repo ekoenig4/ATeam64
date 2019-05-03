@@ -69,12 +69,6 @@ public class QuestionList {
 		return topics;
 	}
 	
-	public Set<String> allTopicNames() { return topicList.keySet(); }
-	
-	public Topic[] getAllTopics() {
-		return getTopic(allTopicNames().toArray(new String[0]));
-	}
-	
 	/**
 	 * Loads a json file into the QuestionList class 
 	 * @param jsonFilepath is the path to the json file to be loaded

@@ -32,6 +32,7 @@ public class Question {
     this.topic = topic;
     this.question = question;
     this.answers = answers;
+    this.imageFileName = "none";
     pic = null;
   }
   
@@ -61,47 +62,23 @@ public class Question {
 		return topic;
 	}
 
-	public void setTopic(String topic) {
-		this.topic = topic;
-	}
-
 	public String getQuestion() {
 		return question;
-	}
-
-	public void setQuestion(String question) {
-		this.question = question;
 	}
 
 	public Image getPic() {
 		return pic;
 	}
 
-	public void setPic(Image pic) {
-		this.pic = pic;
-	}
-
 	public String getMetaData() {
 		return metaData;
-	}
-
-	public void setMetaData(String metaData) {
-		this.metaData = metaData;
 	}
 
 	public String getImageFileName() {
 		return imageFileName;
 	}
 
-	public void setImageFileName(String imageFileName) {
-		this.imageFileName = imageFileName;
-	}
-
 	public HashMap<String,Boolean> getAnswers() {
 		return answers;
-	}
-
-	public void setAnswers(HashMap<String,Boolean> answers) {
-		this.answers = answers;
 	}
 }
